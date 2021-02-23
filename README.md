@@ -2,10 +2,10 @@
 # Logic-games
 Collection of 3 logic games for a school project
 
+Game | Creator
+----------- | -------------
 **Snake** | _@RandomByteFF_
------------ | -------------
 **Sudoku** | _@_
------------ | -------------
 **Battleship**| _@kristof-me_
 
 ## Snake
