@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Logic_games.SnakeClasses;
 
 namespace Logic_games
 {
@@ -17,7 +18,7 @@ namespace Logic_games
         private int tileSize = 40;
         private Color backColor1 = Color.FromArgb(170, 215, 85);
         private Color backColor2 = Color.FromArgb(162, 209, 73);
-
+        
         public Snake()
         {
             InitializeComponent();
@@ -34,6 +35,7 @@ namespace Logic_games
             DrawBackGround();
         }
 
+        
         private void DrawBackGround() {
             Graphics g = CreateGraphics();
             Brush backPen1 = new SolidBrush(backColor1);
