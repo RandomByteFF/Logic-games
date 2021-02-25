@@ -9,15 +9,44 @@ namespace Logic_games.SnakeClasses
     //Class for the storing of 2D coordinates
     public class Vector2
     {
+        int tileSize;
         public int x { get; set; }
         public int y { get; set; }
-        public int xGrid { get; set; }
-        public int yGrid { get; set; }
+        private int xG;
+        private int yG;
+        public int xGrid {
+            get 
+            {
+                return xG;
+            }
 
-        public Vector2(int X, int Y, int tileSize)
+            set 
+            {
+                xG = value;
+                x = value * tileSize;
+            }
+        }
+
+        public int yGrid
+        {
+            get
+            {
+                return yG;
+            }
+
+            set
+            {
+                yG = value;
+                y = value * tileSize;
+            }
+        }
+
+        //The constructor takes the location on the grid, then convert it to coordinates based on the tile size
+        public Vector2(int X, int Y, int tileSize) 
         {
             this.xGrid = X;
             this.yGrid = Y;
+            this.tileSize = tileSize;
             ConvertToCoordinate(tileSize);
         }
 
@@ -32,6 +61,17 @@ namespace Logic_games.SnakeClasses
         void ConvertToCoordinate(int tileSize) {
             x = xGrid * tileSize;
             y = yGrid * tileSize;
+        }
+
+        public static Vector2 operator +(Vector2 a, Vector2 b) {
+            Vector2 final = new Vector2(a.xGrid + b.xGrid, a.yGrid + b.yGrid, a.tileSize);
+            return final;
+        }
+
+        public static Vector2 operator -(Vector2 a, Vector2 b)
+        {
+            Vector2 final = new Vector2(a.xGrid - b.xGrid, a.yGrid - b.yGrid, a.tileSize);
+            return final;
         }
     }
 }
