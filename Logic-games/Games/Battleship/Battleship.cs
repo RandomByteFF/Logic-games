@@ -16,5 +16,36 @@ namespace Logic_games
         {
             InitializeComponent();
         }
+
+        private void selectBtn_Click(object sender, EventArgs e)
+        {
+            errorLb.Text = "";
+            switch (gameModeCB.SelectedIndex)
+            {
+                case 0:
+                    SetupGame(0);
+                    break;
+                case 1:
+                    SetupGame(1);
+                    break;
+                case 2:
+                    SetupGame(2);
+                    break;
+                default:
+                    errorLb.Text = "No game mode selected";
+                    break;
+            }
+        }
+
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+            //Vissza a főmenübe
+            this.Close();
+        }
+
+        private void SetupGame(int mode) 
+        {
+            bacgroundPanel.Hide();
+        }
     }
 }
