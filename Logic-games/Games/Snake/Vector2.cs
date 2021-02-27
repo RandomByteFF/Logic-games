@@ -14,6 +14,8 @@ namespace Logic_games.SnakeClasses
         public int y { get; set; }
         private int xG;
         private int yG;
+        public int facing; // 0 - down, 1 - left, 2 - up, 3 - right
+
         public int xGrid {
             get 
             {
@@ -65,12 +67,14 @@ namespace Logic_games.SnakeClasses
 
         public static Vector2 operator +(Vector2 a, Vector2 b) {
             Vector2 final = new Vector2(a.xGrid + b.xGrid, a.yGrid + b.yGrid, a.tileSize);
+            final.facing = b.facing;
             return final;
         }
 
         public static Vector2 operator -(Vector2 a, Vector2 b)
         {
             Vector2 final = new Vector2(a.xGrid - b.xGrid, a.yGrid - b.yGrid, a.tileSize);
+            final.facing = b.facing;
             return final;
         }
     }
