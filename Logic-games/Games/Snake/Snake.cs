@@ -64,19 +64,21 @@ namespace Logic_games
             positions.Add(new Vector2(0, 2, tileSize));
             positions.Add(new Vector2(0, 1, tileSize));
 
-
             Timer timer = new Timer();
             timer.Tick += new EventHandler(Update);
             timer.Interval = Tick;
 
-            CreatePicturebox(Properties.Resources.head, positions[0]);
+            CreateSprite(Properties.Resources.head, positions[0]);
+            CreateSprite(Properties.Resources.body, positions[1]);
+            CreateSprite(Properties.Resources.tail, positions[2]);
 
             timer.Start();
         }
 
         //Runs for every tick
         private void Update(object sender, EventArgs e) {
-            positions[0] = positions[0] + nextMove;
+            positions.Insert(0, positions[0] + nextMove);
+            positions.RemoveAt(positions.Count-1);
 
             for (int i = 0; i < activeSprites.Count; i++)
             {
@@ -84,7 +86,7 @@ namespace Logic_games
             }
         }
 
-        private void CreatePicturebox(Bitmap file, Vector2 position) {
+        private void CreateSprite(Bitmap file, Vector2 position) {
             PictureBox pictureBox = new PictureBox();
             pictureBox.Image = (Image)file;
             pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -99,17 +101,14 @@ namespace Logic_games
             {
                 nextMove = new Vector2(0, 1, tileSize);
             }
-
             else if (e.KeyCode == Keys.Left) // <
             {
                 nextMove = new Vector2(-1, 0, tileSize);
             }
-
             else if (e.KeyCode == Keys.Up) // ^
             {
                 nextMove = new Vector2(0, -1, tileSize);
             }
-
             else if (e.KeyCode == Keys.Right) // >
             {
                 nextMove = new Vector2(1, 0, tileSize);
