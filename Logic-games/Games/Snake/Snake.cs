@@ -16,7 +16,7 @@ namespace Logic_games
         private int xOffset = 0;
         private int yOffset = 0;
         private int tileSize = 40;
-        private int Tick = 200; //Move time
+        private int Tick = 500; //Move time
         private Color backColor1 = Color.FromArgb(170, 215, 85);
         private Color backColor2 = Color.FromArgb(162, 209, 73);
         private Vector2 nextMove;
@@ -60,6 +60,8 @@ namespace Logic_games
         }
 
         private void StartGame() {
+            positions.Add(new Vector2(0, 6, tileSize));
+            positions.Add(new Vector2(0, 5, tileSize));
             positions.Add(new Vector2(0, 4, tileSize));
             positions.Add(new Vector2(0, 3, tileSize));
             positions.Add(new Vector2(0, 2, tileSize));
@@ -72,24 +74,33 @@ namespace Logic_games
             CreateSprite(Properties.Resources.head, positions[0]);
             CreateSprite(Properties.Resources.body, positions[1]);
             CreateSprite(Properties.Resources.body, positions[2]);
-            CreateSprite(Properties.Resources.tail, positions[3]);
+            CreateSprite(Properties.Resources.body, positions[3]);
+            CreateSprite(Properties.Resources.body, positions[4]);
+            CreateSprite(Properties.Resources.tail, positions[5]);
 
             timer.Start();
         }
 
         //Runs for every tick
         private void Update(object sender, EventArgs e) {
-            Vector2 currentHeadPosition = positions[0];
-            activeSprites[0].Image = RotateSnake(activeSprites[0], positions[0], nextMove);
-            //positions[0] = positions[0] + nextMove;
+            Vector2 previousHeadPosition = positions[0];
+            activeSprites[0].Image = RotateSnake(activeSprites[0], positions[0], nextMove, Properties.Resources.head);
             positions.Insert(0, positions[0] + nextMove);
             positions.RemoveAt(positions.Count-1);
-
             activeSprites[0].Location = new Point(positions[0].x, positions[0].y); //Head position
-            activeSprites[activeSprites.Count-1].Image = RotateSnake(activeSprites[activeSprites.Count-1], positions[positions.Count-1], positions[positions.Count-2]); //tail rotation
+
+            activeSprites[activeSprites.Count-1].Image = RotateSnake(activeSprites[activeSprites.Count-1], positions[positions.Count-1], positions[positions.Count-2], Properties.Resources.tail); //tail rotation
             activeSprites[activeSprites.Count-1].Location = new Point(positions[positions.Count-1].x, positions[positions.Count-1].y); //tail location
 
-            activeSprites[activeSprites.Count - 2].Image = RotateSnake(activeSprites[activeSprites.Count-2], positions[positions.Count-2], nextMove);
+            if (previousHeadPosition.facing != nextMove.facing) //Determine if the snake turns
+            {
+                activeSprites[activeSprites.Count - 2].Image = RotateSnake(activeSprites[activeSprites.Count - 2], previousHeadPosition, nextMove, Properties.Resources.turn);
+            }
+            else
+            {
+                activeSprites[activeSprites.Count - 2].Image = RotateSnake(activeSprites[activeSprites.Count - 2], previousHeadPosition, nextMove, Properties.Resources.body);
+            }
+            
             PictureBox temp = activeSprites[activeSprites.Count - 2];
             activeSprites.RemoveAt(activeSprites.Count - 2);
             activeSprites.Insert(1, temp);
@@ -129,16 +140,30 @@ namespace Logic_games
             }
         }
 
-        private Image RotateSnake(PictureBox pic, Vector2 current, Vector2 target) {
-            int ret = Vector2.DetermineFlip(current, target);
-            if (ret == 1)
-            {
-                pic.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+        private Image RotateSnake(PictureBox pic, Vector2 current, Vector2 target, Image original) {
+            pic.Image = original;
+            int ret = target.facing;
+            switch (ret) { //Case 0: not required because default sprite faces downwards
+                case 1:
+                    if (current.facing == 0)
+                    {
+                        pic.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
+                    }
+                    else pic.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    break;
+                case 2:
+                    if (current.facing == 1) pic.Image.RotateFlip(RotateFlipType.Rotate180FlipX);
+                    else pic.Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    break;
+                case 3:
+                    if (current.facing == 2) pic.Image.RotateFlip(RotateFlipType.Rotate270FlipY);
+                    else pic.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    break;
+                default:
+                    if (current.facing == 3) pic.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                    break;
             }
-            else if (ret == -1) 
-            {
-                pic.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
-            }
+            // 0 - DOWN | 1 - LEFT | 2 - UP | 3 - RIGHT
             return pic.Image;
         }
     }

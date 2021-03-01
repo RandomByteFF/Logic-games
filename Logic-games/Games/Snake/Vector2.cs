@@ -77,32 +77,5 @@ namespace Logic_games.SnakeClasses
             final.facing = b.facing;
             return final;
         }
-
-        public static int DetermineFlip(Vector2 current, Vector2 target)  // 0 - down, 1 - left, 2 - up, 3 - right (return 1 - right flip, return -1 - left flip)
-        {
-            if (current.facing == 0) {
-                if (target.facing == 1) return 1;
-                else if (target.facing == 3) return -1;
-                else return 0;
-            }
-            else if (current.facing == 1)
-            {
-                if (target.facing == 2) return 1;
-                else if (target.facing == 0) return -1;
-                else return 0;
-            }
-            else if (current.facing == 2)
-            {
-                if (target.facing == 3) return 1;
-                else if (target.facing == 1) return -1;
-                else return 0;
-            }
-            else
-            {
-                if (target.facing == 0) return 1;
-                else if (target.facing == 2) return -1;
-                else return 0;
-            }
-        }
     }
 }
