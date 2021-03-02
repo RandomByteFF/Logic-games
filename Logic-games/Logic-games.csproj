@@ -169,7 +169,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Battleship\battle_ship_icon.ico" />
-    <Content Include="Resources\Battleship\menu_bg.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
