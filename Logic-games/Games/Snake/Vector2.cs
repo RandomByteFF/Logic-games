@@ -58,6 +58,7 @@ namespace Logic_games.SnakeClasses
             y = 0;
             xGrid = 0;
             yGrid = 0;
+            facing = 0;
         }
 
         void ConvertToCoordinate(int tileSize) {

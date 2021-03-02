@@ -20,6 +20,7 @@ namespace Logic_games
         private Color backColor1 = Color.FromArgb(170, 215, 85);
         private Color backColor2 = Color.FromArgb(162, 209, 73);
         private Vector2 nextMove;
+        private Vector2 previousMove = new Vector2();
 
         private List<Vector2> positions = new List<Vector2>();
         private List<PictureBox> activeSprites = new List<PictureBox>();
@@ -105,13 +106,16 @@ namespace Logic_games
             activeSprites.RemoveAt(activeSprites.Count - 2);
             activeSprites.Insert(1, temp);
             activeSprites[1].Location = new Point(positions[1].x, positions[1].y); //Moves item before tail to after head
+
+            previousMove = nextMove;
         }
 
         private void CreateSprite(Bitmap file, Vector2 position) {
             PictureBox pictureBox = new PictureBox();
             pictureBox.Image = (Image)file;
-            pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox.Location = new Point(position.x, position.y);
+            pictureBox.Size = new Size(tileSize, tileSize);
             activeSprites.Add(pictureBox);
             this.Controls.Add(pictureBox);
         }
@@ -120,23 +124,35 @@ namespace Logic_games
         {
             if (e.KeyCode == Keys.Down) // ˇ
             {
-                nextMove = new Vector2(0, 1, tileSize);
-                nextMove.facing = 0;
+                if (previousMove.facing != 2) 
+                {
+                    nextMove = new Vector2(0, 1, tileSize);
+                    nextMove.facing = 0;
+                }
             }
             else if (e.KeyCode == Keys.Left) // <
             {
-                nextMove = new Vector2(-1, 0, tileSize);
-                nextMove.facing = 1;
+                if (previousMove.facing != 3)
+                {
+                    nextMove = new Vector2(-1, 0, tileSize);
+                    nextMove.facing = 1;
+                }
             }
             else if (e.KeyCode == Keys.Up) // ^
             {
-                nextMove = new Vector2(0, -1, tileSize);
-                nextMove.facing = 2;
+                if (previousMove.facing != 0)
+                {
+                    nextMove = new Vector2(0, -1, tileSize);
+                    nextMove.facing = 2;
+                }
             }
             else if (e.KeyCode == Keys.Right) // >
             {
-                nextMove = new Vector2(1, 0, tileSize);
-                nextMove.facing = 3;
+                if (previousMove.facing != 1)
+                {
+                    nextMove = new Vector2(1, 0, tileSize);
+                    nextMove.facing = 3;
+                }
             }
         }
 
@@ -145,10 +161,7 @@ namespace Logic_games
             int ret = target.facing;
             switch (ret) { //Case 0: not required because default sprite faces downwards
                 case 1:
-                    if (current.facing == 0)
-                    {
-                        pic.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
-                    }
+                    if (current.facing == 0) pic.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
                     else pic.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                     break;
                 case 2:
