@@ -16,15 +16,20 @@ namespace Logic_games
         private int xOffset = 0;
         private int yOffset = 0;
         private int tileSize = 40;
-        private int Tick = 500; //Move time
+        private int Tick = 200; //Move time
         private Color backColor1 = Color.FromArgb(170, 215, 85);
         private Color backColor2 = Color.FromArgb(162, 209, 73);
+        /*private Color backColor1 = Color.FromArgb(0, 0, 0);
+        private Color backColor2 = Color.FromArgb(255, 255, 255);*/
         private Vector2 nextMove;
         private Vector2 previousMove = new Vector2();
 
         private List<Vector2> positions = new List<Vector2>();
         private List<PictureBox> activeSprites = new List<PictureBox>();
-        
+
+        bool headColor = false;
+        bool tailColor = true;
+
         public Snake()
         {
             InitializeComponent();
@@ -47,10 +52,13 @@ namespace Logic_games
             Graphics g = CreateGraphics();
             Brush backPen1 = new SolidBrush(backColor1);
             Brush backPen2 = new SolidBrush(backColor2);
+            bool activeLine = true;
             bool activePen = true;
 
             for (int i = yOffset; i < Height-tileSize; i += tileSize)
             {
+                activePen = activeLine;
+                activeLine = !activeLine;
                 for (int j = xOffset; j < Width-tileSize; j += tileSize)
                 {
                     Rectangle rec = new Rectangle(j, i, tileSize, tileSize);
@@ -85,13 +93,16 @@ namespace Logic_games
         //Runs for every tick
         private void Update(object sender, EventArgs e) {
             Vector2 previousHeadPosition = positions[0];
+
             activeSprites[0].Image = RotateSnake(activeSprites[0], positions[0], nextMove, Properties.Resources.head);
             positions.Insert(0, positions[0] + nextMove);
             positions.RemoveAt(positions.Count-1);
             activeSprites[0].Location = new Point(positions[0].x, positions[0].y); //Head position
+            activeSprites[0].BackColor = headColor ? backColor1 : backColor2;
 
             activeSprites[activeSprites.Count-1].Image = RotateSnake(activeSprites[activeSprites.Count-1], positions[positions.Count-1], positions[positions.Count-2], Properties.Resources.tail); //tail rotation
             activeSprites[activeSprites.Count-1].Location = new Point(positions[positions.Count-1].x, positions[positions.Count-1].y); //tail location
+            activeSprites[activeSprites.Count - 1].BackColor = tailColor ? backColor1 : backColor2;
 
             if (previousHeadPosition.facing != nextMove.facing) //Determine if the snake turns
             {
@@ -106,8 +117,11 @@ namespace Logic_games
             activeSprites.RemoveAt(activeSprites.Count - 2);
             activeSprites.Insert(1, temp);
             activeSprites[1].Location = new Point(positions[1].x, positions[1].y); //Moves item before tail to after head
+            activeSprites[1].BackColor = !headColor ? backColor1 : backColor2;
 
             previousMove = nextMove;
+            headColor = !headColor;
+            tailColor = !tailColor;
         }
 
         private void CreateSprite(Bitmap file, Vector2 position) {
