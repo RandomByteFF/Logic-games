@@ -16,11 +16,10 @@ namespace Logic_games
         private int xOffset = 0;
         private int yOffset = 0;
         private int tileSize = 40;
-        private int Tick = 100; //Move time
+        private int Tick = 500; //Move time
         private Color backColor1 = Color.FromArgb(170, 215, 85);
         private Color backColor2 = Color.FromArgb(162, 209, 73);
         private Vector2 nextMove;
-        private Vector2 previousMove = new Vector2();
 
         private List<Vector2> positions = new List<Vector2>();
         private List<PictureBox> activeSprites = new List<PictureBox>();
@@ -106,11 +105,8 @@ namespace Logic_games
             activeSprites.RemoveAt(activeSprites.Count - 2);
             activeSprites.Insert(1, temp);
             activeSprites[1].Location = new Point(positions[1].x, positions[1].y); //Moves item before tail to after head
-
-            previousMove = nextMove;
         }
 
-        //Replace with Graphics.DrawImage
         private void CreateSprite(Bitmap file, Vector2 position) {
             PictureBox pictureBox = new PictureBox();
             pictureBox.Image = (Image)file;
@@ -124,35 +120,23 @@ namespace Logic_games
         {
             if (e.KeyCode == Keys.Down) // ˇ
             {
-                if (previousMove.facing != 2) 
-                {
-                    nextMove = new Vector2(0, 1, tileSize);
-                    nextMove.facing = 0;
-                } 
+                nextMove = new Vector2(0, 1, tileSize);
+                nextMove.facing = 0;
             }
             else if (e.KeyCode == Keys.Left) // <
             {
-                if (previousMove.facing != 3) 
-                {
-                    nextMove = new Vector2(-1, 0, tileSize);
-                    nextMove.facing = 1;
-                }
+                nextMove = new Vector2(-1, 0, tileSize);
+                nextMove.facing = 1;
             }
             else if (e.KeyCode == Keys.Up) // ^
             {
-                if (previousMove.facing != 0) 
-                {
-                    nextMove = new Vector2(0, -1, tileSize);
-                    nextMove.facing = 2;
-                }
+                nextMove = new Vector2(0, -1, tileSize);
+                nextMove.facing = 2;
             }
             else if (e.KeyCode == Keys.Right) // >
             {
-                if (previousMove.facing != 1) 
-                {
-                    nextMove = new Vector2(1, 0, tileSize);
-                    nextMove.facing = 3;
-                }
+                nextMove = new Vector2(1, 0, tileSize);
+                nextMove.facing = 3;
             }
         }
 
