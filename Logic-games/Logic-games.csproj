@@ -169,6 +169,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Battleship\battle_ship_icon.ico" />
+    <None Include="Resources\Battleship\Grey\battleship1.png" />
+    <None Include="Resources\Battleship\Grey\battleship2.png" />
+    <None Include="Resources\Battleship\Grey\battleship3.png" />
+    <None Include="Resources\Battleship\Grey\battleship4.png" />
+    <None Include="Resources\Battleship\Grey\carrier1.png" />
+    <None Include="Resources\Battleship\Grey\carrier2.png" />
+    <None Include="Resources\Battleship\Grey\carrier3.png" />
+    <None Include="Resources\Battleship\Grey\carrier4.png" />
+    <None Include="Resources\Battleship\Grey\carrier5.png" />
+    <None Include="Resources\Battleship\Grey\destroyer1.png" />
+    <None Include="Resources\Battleship\Grey\destroyer2.png" />
+    <None Include="Resources\Battleship\Grey\destroyer3.png" />
+    <None Include="Resources\Battleship\Grey\patrolBoat1.png" />
+    <None Include="Resources\Battleship\Grey\patrolBoat2.png" />
+    <None Include="Resources\Battleship\Grey\submarine1.png" />
+    <None Include="Resources\Battleship\Grey\submarine2.png" />
+    <None Include="Resources\Battleship\Grey\submarine3.png" />
+    <None Include="Resources\Battleship\Ships\Battleship.png" />
+    <None Include="Resources\Battleship\Ships\Carrier.png" />
+    <None Include="Resources\Battleship\Ships\Destroyer.png" />
+    <None Include="Resources\Battleship\Ships\PatrolBoat.png" />
+    <None Include="Resources\Battleship\Ships\Submarine.png" />
+    <Content Include="Resources\water24.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

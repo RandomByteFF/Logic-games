@@ -130,4 +130,73 @@
   <data name="turn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\turn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Battleship" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Ships\Battleship.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="battleship1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\battleship1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="battleship2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\battleship2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="battleship3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\battleship3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="battleship4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\battleship4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Carrier" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Ships\Carrier.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carrier1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\carrier1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carrier2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\carrier2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carrier3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\carrier3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carrier4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\carrier4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carrier5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\carrier5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Destroyer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Ships\Destroyer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="destroyer1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\destroyer1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="destroyer2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\destroyer2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="destroyer3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\destroyer3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PatrolBoat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Ships\PatrolBoat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="patrolBoat1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\patrolBoat1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="patrolBoat2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\patrolBoat2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Submarine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Ships\Submarine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="submarine1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\submarine1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="submarine2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\submarine2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="submarine3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\submarine3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="water24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\water24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
