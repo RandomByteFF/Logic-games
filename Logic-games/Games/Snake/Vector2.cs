@@ -78,5 +78,33 @@ namespace Logic_games.SnakeClasses
             final.facing = b.facing;
             return final;
         }
+
+        public static bool operator ==(Vector2 a, Vector2 b)
+        {
+            return a.x == b.x && a.y == b.y;
+        }
+
+        public static bool operator !=(Vector2 a, Vector2 b)
+        {
+            return !(a.x == b.x && a.y == b.y);
+        }
+
+        public static bool Contains(List<Vector2> list, Vector2 a) 
+        {
+            for (int i = 1; i < list.Count; i++)
+            {
+                if (a == list[i]) return true;
+            }
+            return false;
+        }
+
+        public static int ContainsAt(List<Vector2> list, Vector2 a)
+        {
+            for (int i = 1; i < list.Count; i++)
+            {
+                if (a == list[i]) return i;
+            }
+            return -1;
+        }
     }
 }

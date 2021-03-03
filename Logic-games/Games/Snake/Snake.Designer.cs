@@ -39,6 +39,7 @@
             this.Name = "Snake";
             this.Text = "Snake";
             this.Load += new System.EventHandler(this.Snake_Load);
+            this.SizeChanged += new System.EventHandler(this.Snake_SizeChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Snake_KeyDown);
             this.ResumeLayout(false);
 
