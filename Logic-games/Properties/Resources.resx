@@ -133,9 +133,6 @@
   <data name="Battleship" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Battleship\Ships\Battleship.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="battleship1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Battleship\Grey\battleship1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="battleship2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Battleship\Grey\battleship2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -198,5 +195,14 @@
   </data>
   <data name="water24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\water24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="battleship1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\Grey\battleship1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\arrow1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Battleship\arrow2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

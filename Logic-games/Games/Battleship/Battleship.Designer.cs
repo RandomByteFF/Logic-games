@@ -40,18 +40,12 @@
             this.headerPB = new System.Windows.Forms.PictureBox();
             this.rightMenuPanel = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.RotatePanel = new System.Windows.Forms.TableLayoutPanel();
-            this.RotateRightBtn = new System.Windows.Forms.Button();
-            this.RotateLeftBtn = new System.Windows.Forms.Button();
-            this.RotatePB = new System.Windows.Forms.PictureBox();
             this.menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.titlePicture)).BeginInit();
             this.gameLP1.SuspendLayout();
             this.gamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.headerPB)).BeginInit();
             this.rightMenuPanel.SuspendLayout();
-            this.RotatePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RotatePB)).BeginInit();
             this.SuspendLayout();
             // 
             // menuPanel
@@ -209,7 +203,6 @@
             this.rightMenuPanel.ColumnCount = 1;
             this.rightMenuPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.rightMenuPanel.Controls.Add(this.label1, 0, 2);
-            this.rightMenuPanel.Controls.Add(this.RotatePanel, 0, 1);
             this.rightMenuPanel.Location = new System.Drawing.Point(481, 0);
             this.rightMenuPanel.Margin = new System.Windows.Forms.Padding(0);
             this.rightMenuPanel.Name = "rightMenuPanel";
@@ -234,72 +227,6 @@
             this.label1.Text = "label1";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // RotatePanel
-            // 
-            this.RotatePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.RotatePanel.BackColor = System.Drawing.Color.Silver;
-            this.RotatePanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.RotatePanel.ColumnCount = 3;
-            this.RotatePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.RotatePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.RotatePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.RotatePanel.Controls.Add(this.RotateRightBtn, 2, 0);
-            this.RotatePanel.Controls.Add(this.RotateLeftBtn, 0, 0);
-            this.RotatePanel.Controls.Add(this.RotatePB, 1, 0);
-            this.RotatePanel.Location = new System.Drawing.Point(2, 200);
-            this.RotatePanel.Margin = new System.Windows.Forms.Padding(0);
-            this.RotatePanel.Name = "RotatePanel";
-            this.RotatePanel.RowCount = 1;
-            this.RotatePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.RotatePanel.Size = new System.Drawing.Size(244, 196);
-            this.RotatePanel.TabIndex = 8;
-            // 
-            // RotateRightBtn
-            // 
-            this.RotateRightBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.RotateRightBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("RotateRightBtn.BackgroundImage")));
-            this.RotateRightBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.RotateRightBtn.Location = new System.Drawing.Point(207, 1);
-            this.RotateRightBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.RotateRightBtn.Name = "RotateRightBtn";
-            this.RotateRightBtn.Size = new System.Drawing.Size(36, 194);
-            this.RotateRightBtn.TabIndex = 2;
-            this.RotateRightBtn.Text = " ";
-            this.RotateRightBtn.UseVisualStyleBackColor = true;
-            this.RotateRightBtn.Click += new System.EventHandler(this.RotateRightBtn_Click);
-            // 
-            // RotateLeftBtn
-            // 
-            this.RotateLeftBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.RotateLeftBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("RotateLeftBtn.BackgroundImage")));
-            this.RotateLeftBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.RotateLeftBtn.Location = new System.Drawing.Point(1, 1);
-            this.RotateLeftBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.RotateLeftBtn.Name = "RotateLeftBtn";
-            this.RotateLeftBtn.Size = new System.Drawing.Size(36, 194);
-            this.RotateLeftBtn.TabIndex = 1;
-            this.RotateLeftBtn.UseVisualStyleBackColor = true;
-            this.RotateLeftBtn.Click += new System.EventHandler(this.RotateLeftBtn_Click);
-            // 
-            // RotatePB
-            // 
-            this.RotatePB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.RotatePB.Location = new System.Drawing.Point(38, 1);
-            this.RotatePB.Margin = new System.Windows.Forms.Padding(0);
-            this.RotatePB.Name = "RotatePB";
-            this.RotatePB.Size = new System.Drawing.Size(168, 194);
-            this.RotatePB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.RotatePB.TabIndex = 3;
-            this.RotatePB.TabStop = false;
-            // 
             // Battleship
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -322,8 +249,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.headerPB)).EndInit();
             this.rightMenuPanel.ResumeLayout(false);
             this.rightMenuPanel.PerformLayout();
-            this.RotatePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.RotatePB)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -341,9 +266,5 @@
         private System.Windows.Forms.PictureBox headerPB;
         private System.Windows.Forms.TableLayoutPanel rightMenuPanel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TableLayoutPanel RotatePanel;
-        private System.Windows.Forms.Button RotateRightBtn;
-        private System.Windows.Forms.Button RotateLeftBtn;
-        private System.Windows.Forms.PictureBox RotatePB;
     }
 }
