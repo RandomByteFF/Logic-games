@@ -170,6 +170,7 @@
   <ItemGroup>
     <None Include="Resources\Battleship\arrow1.png" />
     <None Include="Resources\Battleship\arrow2.png" />
+    <None Include="Resources\apple.png" />
     <Content Include="Resources\Battleship\battle_ship_icon.ico" />
     <None Include="Resources\Battleship\Grey\battleship1.png" />
     <None Include="Resources\Battleship\Grey\battleship2.png" />

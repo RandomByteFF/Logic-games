@@ -21,16 +21,20 @@ namespace Logic_games
         private Color backColor2 = Color.FromArgb(162, 209, 73);
         /*private Color backColor1 = Color.FromArgb(0, 0, 0);
         private Color backColor2 = Color.FromArgb(255, 255, 255);*/
+        //Different color palette for debugging
         private Vector2 nextMove;
         private Vector2 previousMove = new Vector2();
+        private Vector2 applePosition;
+        private PictureBox appleSprite;
 
         private List<Vector2> positions = new List<Vector2>();
         private List<PictureBox> activeSprites = new List<PictureBox>();
 
         bool headColor = true;
-        bool tailColor = true;
+        bool tailColor = false;
 
         Timer timer = new Timer();
+        Random rng = new Random();
 
         public Snake()
         {
@@ -82,6 +86,9 @@ namespace Logic_games
             timer.Tick += new EventHandler(Update);
             timer.Interval = Tick;
 
+            CreateSprite(Properties.Resources.apple, new Vector2(), -2);
+            NewApplePosition();
+
             CreateSprite(Properties.Resources.head, positions[0]);
             CreateSprite(Properties.Resources.body, positions[1]);
             CreateSprite(Properties.Resources.body, positions[2]);
@@ -89,7 +96,6 @@ namespace Logic_games
             CreateSprite(Properties.Resources.body, positions[4]);
             CreateSprite(Properties.Resources.body, positions[5]);
             CreateSprite(Properties.Resources.tail, positions[6]);
-            //activeSprites[5].BackColor = backColor1;
 
             timer.Start();
         }
@@ -106,24 +112,39 @@ namespace Logic_games
 
             activeSprites[0].Image = RotateSnake(activeSprites[0], positions[0], nextMove, headImage);
             positions.Insert(0, positions[0] + nextMove);
-            positions.RemoveAt(positions.Count-1);
             activeSprites[0].Location = new Point(positions[0].x, positions[0].y); //Head position
             activeSprites[0].BackColor = headColor ? backColor1 : backColor2; //Head backColor
 
-            int tailIndex = activeSprites.Count - 1;
             int bodyIndex = activeSprites.Count - 2;
+            Bitmap replaceImage = previousHeadPosition.facing != nextMove.facing ? turnImage : bodyImage; //Determine if snake turns
+            bool pickedUpApple = positions[0] == applePosition;
+            if (pickedUpApple)
+            {
+                replaceImage = (Bitmap)RotateSnake(new PictureBox(), previousHeadPosition, nextMove, replaceImage);
+                NewApplePosition();
+                CreateSprite(replaceImage, positions[1], 1);
+                bodyIndex++;
+            }
+            else
+            {
+                replaceImage = (Bitmap)RotateSnake(activeSprites[bodyIndex], previousHeadPosition, nextMove, replaceImage);
+                positions.RemoveAt(positions.Count - 1);
+                PictureBox temp = activeSprites[bodyIndex];
+                activeSprites.RemoveAt(bodyIndex);
+                activeSprites.Insert(1, temp);
+                activeSprites[1].Location = new Point(positions[1].x, positions[1].y); //Moves item before tail to after head
+            }
+            activeSprites[1].BackColor = !headColor ? backColor1 : backColor2;
+
+            headColor = !headColor;
+            if (!pickedUpApple)
+            {
+                tailColor = !tailColor;
+            }
+            int tailIndex = activeSprites.Count - 1;
             activeSprites[tailIndex].Image = RotateSnake(activeSprites[tailIndex], positions[tailIndex], positions[bodyIndex], tailImage); //tail rotation
             activeSprites[tailIndex].Location = new Point(positions[tailIndex].x, positions[tailIndex].y); //tail location
             activeSprites[tailIndex].BackColor = tailColor ? backColor1 : backColor2;
-
-            Bitmap replaceImage = previousHeadPosition.facing != nextMove.facing ? turnImage : bodyImage; //Determine if snake turns
-            activeSprites[bodyIndex].Image = RotateSnake(activeSprites[bodyIndex], previousHeadPosition, nextMove, replaceImage);
-            
-            PictureBox temp = activeSprites[bodyIndex];
-            activeSprites.RemoveAt(bodyIndex);
-            activeSprites.Insert(1, temp);
-            activeSprites[1].Location = new Point(positions[1].x, positions[1].y); //Moves item before tail to after head
-            activeSprites[1].BackColor = !headColor ? backColor1 : backColor2;
 
             if (Vector2.Contains(positions, nextLocation))
             {
@@ -139,17 +160,17 @@ namespace Logic_games
             }
 
             previousMove = nextMove;
-            headColor = !headColor;
-            tailColor = !tailColor;
         }
 
-        private void CreateSprite(Bitmap file, Vector2 position) {
+        private void CreateSprite(Bitmap file, Vector2 position, int addToActiveSprites = -1) {
             PictureBox pictureBox = new PictureBox();
             pictureBox.Image = (Image)file;
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox.Location = new Point(position.x, position.y);
             pictureBox.Size = new Size(tileSize, tileSize);
-            activeSprites.Add(pictureBox);
+            if (addToActiveSprites == -1) activeSprites.Add(pictureBox);
+            else if (addToActiveSprites == -2) appleSprite = pictureBox;
+            else activeSprites.Insert(addToActiveSprites, pictureBox);
             this.Controls.Add(pictureBox);
         }
 
@@ -221,6 +242,14 @@ namespace Logic_games
         private void Snake_SizeChanged(object sender, EventArgs e)
         {
             Invalidate();
+        }
+
+        private void NewApplePosition() 
+        {
+            Vector2 final = new Vector2(rng.Next((Width - yOffset) / tileSize), rng.Next((Height - yOffset) / tileSize), tileSize);
+            appleSprite.Location = new Point(final.x, final.y);
+            applePosition = final;
+            appleSprite.BackColor = (final.xGrid + final.yGrid) % 2 == 0 ? backColor1 : backColor2;
         }
     }
 }

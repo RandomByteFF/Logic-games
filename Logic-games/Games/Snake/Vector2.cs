@@ -52,6 +52,14 @@ namespace Logic_games.SnakeClasses
             ConvertToCoordinate(tileSize);
         }
 
+        public Vector2(Vector2 loc, int tileSize)
+        {
+            this.xGrid = loc.xGrid;
+            this.yGrid = loc.yGrid;
+            this.tileSize = tileSize;
+            ConvertToCoordinate(tileSize);
+        }
+
         public Vector2()
         {
             x = 0;
