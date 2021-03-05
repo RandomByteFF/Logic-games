@@ -14,11 +14,12 @@ namespace Logic_games
     public partial class Snake : Form
     {
         private int xOffset = 0;
-        private int yOffset = 0;
+        private int yOffset = 80;
         private int tileSize = 40;
         private int Tick = 200; //Move time
         private Color backColor1 = Color.FromArgb(170, 215, 85);
         private Color backColor2 = Color.FromArgb(162, 209, 73);
+        private Color backgroundColor = Color.FromArgb(74, 117, 44);
         /*private Color backColor1 = Color.FromArgb(0, 0, 0);
         private Color backColor2 = Color.FromArgb(255, 255, 255);*/
         //Different color palette for debugging
@@ -30,6 +31,7 @@ namespace Logic_games
         private List<Vector2> positions = new List<Vector2>();
         private List<PictureBox> activeSprites = new List<PictureBox>();
 
+        public int score = -1;
         bool headColor = true;
         bool tailColor = false;
 
@@ -45,8 +47,14 @@ namespace Logic_games
         {
             Width = 1016;
             Height = 1039;
+            BackColor = backgroundColor;
+            appleIcon.BackColor = Color.Transparent;
+            recordIcon.BackColor = Color.Transparent;
             nextMove = new Vector2(0, 1, tileSize);
+            panel.Visible = false;
+            panel.BackColor = backgroundColor;
             DoubleBuffered = true;
+            timer.Tick += new EventHandler(Update);
             StartGame();
         }
 
@@ -74,28 +82,23 @@ namespace Logic_games
             }
         }
 
-        private void StartGame() {
-            positions.Add(new Vector2(0, 7, tileSize));
-            positions.Add(new Vector2(0, 6, tileSize));
-            positions.Add(new Vector2(0, 5, tileSize));
-            positions.Add(new Vector2(0, 4, tileSize));
-            positions.Add(new Vector2(0, 3, tileSize));
-            positions.Add(new Vector2(0, 2, tileSize));
-            positions.Add(new Vector2(0, 1, tileSize));
+        private void SnakeSpawn() {
+            for (int i = 4; i > 1; i--)
+            {
+                positions.Add(new Vector2(0, i, tileSize));
+            }
+            CreateSprite(Properties.Resources.head, positions[0]);
+            CreateSprite(Properties.Resources.body, positions[1]);
+            CreateSprite(Properties.Resources.tail, positions[2]);
+        }
 
-            timer.Tick += new EventHandler(Update);
+        private void StartGame() {
+            SnakeSpawn();
+
             timer.Interval = Tick;
 
             CreateSprite(Properties.Resources.apple, new Vector2(), -2);
             NewApplePosition();
-
-            CreateSprite(Properties.Resources.head, positions[0]);
-            CreateSprite(Properties.Resources.body, positions[1]);
-            CreateSprite(Properties.Resources.body, positions[2]);
-            CreateSprite(Properties.Resources.body, positions[3]);
-            CreateSprite(Properties.Resources.body, positions[4]);
-            CreateSprite(Properties.Resources.body, positions[5]);
-            CreateSprite(Properties.Resources.tail, positions[6]);
 
             timer.Start();
         }
@@ -154,7 +157,7 @@ namespace Logic_games
                 GameEnd();
             }
 
-            if (nextLocation.x >= ClientRectangle.Width || nextLocation.x < 0 || nextLocation.y >= ClientRectangle.Height || nextLocation.y < 0) 
+            if (nextLocation.x >= ClientRectangle.Width || nextLocation.x < xOffset || nextLocation.y >= ClientRectangle.Height || nextLocation.y < yOffset) 
             {
                 GameEnd();
             }
@@ -237,6 +240,7 @@ namespace Logic_games
         private void GameEnd() 
         {
             timer.Stop();
+            panel.Visible = true;
         }
 
         private void Snake_SizeChanged(object sender, EventArgs e)
@@ -246,13 +250,35 @@ namespace Logic_games
 
         private void NewApplePosition() 
         {
-            //Vector2 final = new Vector2(rng.Next((Width - yOffset) / tileSize), rng.Next((Height - yOffset) / tileSize), tileSize);
-            Vector2 start = new Vector2(0, 0, tileSize);
+            Vector2 start = new Vector2(xOffset/tileSize, yOffset/tileSize, tileSize);
             Vector2 end = new Vector2((Width - xOffset) / tileSize, (Height - yOffset)/tileSize, tileSize);
             Vector2 final = Vector2.RangeExclude(rng, start, end, positions, tileSize);
             appleSprite.Location = new Point(final.x, final.y);
             applePosition = final;
             appleSprite.BackColor = (final.xGrid + final.yGrid) % 2 == 0 ? backColor1 : backColor2;
+            scoreText.Text = Convert.ToString(++score);
+        }
+
+        private void restartButton_Click(object sender, EventArgs e)
+        {
+            foreach (PictureBox i in activeSprites) 
+            {
+                i.Dispose();
+            }
+            activeSprites.Clear();
+            positions.Clear();
+            panel.Visible = false;
+            score = -1;
+            nextMove = new Vector2(0, 1, tileSize);
+            appleSprite.Dispose();
+            Focus();
+            StartGame();
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            panel.Visible = false;
+            Close();
         }
     }
 }

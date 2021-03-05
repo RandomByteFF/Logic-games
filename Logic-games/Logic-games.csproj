@@ -186,6 +186,7 @@
     <None Include="Resources\turn.png" />
     <None Include="Resources\head.png" />
     <None Include="Resources\tail.png" />
+    <None Include="Resources\record.png" />
     <Content Include="Resources\water24.png" />
   </ItemGroup>
   <ItemGroup />

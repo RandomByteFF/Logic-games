@@ -118,9 +118,9 @@ namespace Logic_games.SnakeClasses
         public static Vector2 RangeExclude(Random rng, Vector2 start, Vector2 end, List<Vector2> exclude, int tileSize) 
         {
             List<Vector2> final = new List<Vector2>();
-            for (int i = 0; i < end.xGrid; i++)
+            for (int i = start.xGrid; i < end.xGrid; i++)
             {
-                for (int j = 0; j < end.yGrid; j++)
+                for (int j = start.yGrid; j < end.yGrid; j++)
                 {
                     bool contains = false;
                     foreach (Vector2 k in exclude) 
