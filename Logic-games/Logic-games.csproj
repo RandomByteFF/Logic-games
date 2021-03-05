@@ -156,18 +156,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\head.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\body.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tail.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\turn.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Battleship\arrow1.png" />
     <None Include="Resources\Battleship\arrow2.png" />
     <None Include="Resources\apple.png" />
@@ -194,6 +182,10 @@
     <None Include="Resources\Battleship\Ships\Destroyer.png" />
     <None Include="Resources\Battleship\Ships\PatrolBoat.png" />
     <None Include="Resources\Battleship\Ships\Submarine.png" />
+    <None Include="Resources\body.png" />
+    <None Include="Resources\turn.png" />
+    <None Include="Resources\head.png" />
+    <None Include="Resources\tail.png" />
     <Content Include="Resources\water24.png" />
   </ItemGroup>
   <ItemGroup />
