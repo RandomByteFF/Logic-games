@@ -114,5 +114,27 @@ namespace Logic_games.SnakeClasses
             }
             return -1;
         }
+
+        public static Vector2 RangeExclude(Random rng, Vector2 start, Vector2 end, List<Vector2> exclude, int tileSize) 
+        {
+            List<Vector2> final = new List<Vector2>();
+            for (int i = 0; i < end.xGrid; i++)
+            {
+                for (int j = 0; j < end.yGrid; j++)
+                {
+                    bool contains = false;
+                    foreach (Vector2 k in exclude) 
+                    {
+                        if (k.xGrid == i && k.yGrid == j) 
+                        {
+                            contains = true;
+                            break;
+                        }
+                    }
+                    if (!contains) final.Add(new Vector2(i, j, tileSize));
+                }
+            }
+            return final[rng.Next(0, final.Count)];
+        }
     }
 }

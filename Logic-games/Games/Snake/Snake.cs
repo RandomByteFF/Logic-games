@@ -246,7 +246,10 @@ namespace Logic_games
 
         private void NewApplePosition() 
         {
-            Vector2 final = new Vector2(rng.Next((Width - yOffset) / tileSize), rng.Next((Height - yOffset) / tileSize), tileSize);
+            //Vector2 final = new Vector2(rng.Next((Width - yOffset) / tileSize), rng.Next((Height - yOffset) / tileSize), tileSize);
+            Vector2 start = new Vector2(0, 0, tileSize);
+            Vector2 end = new Vector2((Width - xOffset) / tileSize, (Height - yOffset)/tileSize, tileSize);
+            Vector2 final = Vector2.RangeExclude(rng, start, end, positions, tileSize);
             appleSprite.Location = new Point(final.x, final.y);
             applePosition = final;
             appleSprite.BackColor = (final.xGrid + final.yGrid) % 2 == 0 ? backColor1 : backColor2;
