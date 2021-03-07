@@ -96,12 +96,23 @@ namespace Logic_games
         }
         private bool Placeable(int[] c, int direction)
         {
-            bool CheckX(int i, int max, int change)
+            bool Check(int i, int max, int change, bool isX)
             {
-                while (i != max && placement[i, c[1] - 1] == 0)
+                if (isX)
                 {
-                    i += change;
+                    while (i != max && placement[i, c[1] - 1] == 0)
+                    {
+                        i += change;
+                    }
                 }
+                else 
+                {
+                    while (i != max && placement[c[0] - 1, i] == 0)
+                    {
+                        i += change;
+                    }
+                }
+
                 if (i == max)
                 {
                     return true;
@@ -109,40 +120,23 @@ namespace Logic_games
                 else { return false; }
             }
 
-            bool CheckY(int i, int max, int change)
-            {
-                while (i != max && placement[c[0] - 1, i] == 0)
-                {
-                    i += change;
-                }
-                if (i == max)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
             if (selectedShip.direction == 90 && c[0] + selectedShip.size - 1 < 11)
             {
-                return CheckX(c[0] - 1, c[0] - 1 + selectedShip.size, 1);
+                return Check(c[0] - 1, c[0] - 1 + selectedShip.size, 1, true);
             }
             else if (selectedShip.direction == 270 && c[0] - selectedShip.size >= 0)
             {
-                return CheckX(c[0] - 1, c[0] - 1 - selectedShip.size, -1);
+                return Check(c[0] - 1, c[0] - 1 - selectedShip.size, -1, true);
             }
             else if (selectedShip.direction == 180 && c[1] + selectedShip.size - 1 < 11)
             {
-                return CheckY(c[1] - 1, c[1] - 1 + selectedShip.size, 1);
+                return Check(c[1] - 1, c[1] - 1 + selectedShip.size, 1, false);
             }
             else if (selectedShip.direction == 0 && c[1] - selectedShip.size >= 0)
             {
-                return CheckY(c[1] - 1, c[1] - selectedShip.size, -1);
+                return Check(c[1] - 1, c[1] - selectedShip.size, -1, false);
             }
-
-            return false;
+            else { return false; }
         }
         private void VisualizedShipPlacement(Ship ship)
         {
@@ -234,31 +228,40 @@ namespace Logic_games
         }
         private void SelectShip(int ID)
         {
-            selectedShip = inventory[ID][inventory[ID].Count() - int.Parse(shipAmount[ID].Text)];
-            Image img = null;
-            switch (ID)
+            int r = inventory[ID].Count() - int.Parse(shipAmount[ID].Text);
+            if (r >= inventory[ID].Count)
             {
-                case 0:
-                    img = Resources.Carrier;
-                    break;
-                case 1:
-                    img = Resources.Battleship;
-                    break;
-                case 2:
-                    img = Resources.Destroyer;
-                    break;
-                case 3:
-                    img = Resources.Submarine;
-                    break;
-                case 4:
-                    img = Resources.PatrolBoat;
-                    break;
-                default:
-                    break;
+                ID = -1; selectedShip = null;
             }
+            else
+            {
+                selectedShip = inventory[ID][r];
 
-            RotatePB.Image = img;
-            RotatedImage(img, selectedShip.direction);
+                Image img = null;
+                switch (ID)
+                {
+                    case 0:
+                        img = Resources.Carrier;
+                        break;
+                    case 1:
+                        img = Resources.Battleship;
+                        break;
+                    case 2:
+                        img = Resources.Destroyer;
+                        break;
+                    case 3:
+                        img = Resources.Submarine;
+                        break;
+                    case 4:
+                        img = Resources.PatrolBoat;
+                        break;
+                    default:
+                        break;
+                }
+
+                RotatePB.Image = img;
+                RotatedImage(img, selectedShip.direction);
+            }
         }
         TableLayoutPanel[] RightPanels() 
         {
@@ -270,9 +273,9 @@ namespace Logic_games
             RotatePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
             RotatePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
             RotatePanel.Controls.Add(new Button { Anchor = str, BackgroundImage = Resources.arrow1, BackgroundImageLayout = ImageLayout.Zoom, Margin = new Padding(0), Name = "RotateRightBtn", Text = "", BackColor = Color.DimGray }, 2, 0);
-            RotatePanel.Controls[RotatePanel.Controls.Count - 1].Click += new EventHandler(delegate (object sender, EventArgs e) { RotateImg(sender, e, 90, selectedShip); });
+            RotatePanel.Controls[RotatePanel.Controls.Count - 1].Click += new EventHandler(delegate (object sender, EventArgs e) { RotateImg(sender, e, 90); });
             RotatePanel.Controls.Add(new Button { Anchor = str, BackgroundImage = Resources.arrow2, BackgroundImageLayout = ImageLayout.Zoom, Margin = new Padding(0), Name = "RotateLeftBtn", Text = "", BackColor = Color.DimGray }, 0, 0);
-            RotatePanel.Controls[RotatePanel.Controls.Count - 1].Click += new EventHandler(delegate (object sender, EventArgs e) { RotateImg(sender, e, -90, selectedShip); });
+            RotatePanel.Controls[RotatePanel.Controls.Count - 1].Click += new EventHandler(delegate (object sender, EventArgs e) { RotateImg(sender, e, -90); });
             RotatePanel.Controls.Add(RotatePB, 1, 0);
 
             TableLayoutPanel shipsPanel = new TableLayoutPanel() { Anchor = str, CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset, ColumnCount = 2, Margin = new Padding(0), RowCount = 6 };
@@ -296,8 +299,8 @@ namespace Logic_games
 
             void SelectID(object sender, EventArgs e, int ID)
             {
-                if (int.Parse(ships[ID, 1]) > 0)
-                { 
+                if (int.Parse(shipAmount[ID].Text) > 0)
+                {
                     SelectShip(ID);
 
                     if (shipID != -1 && shipAmount[shipID].BackColor != Color.Black) //sets back the previously selected
@@ -314,36 +317,12 @@ namespace Logic_games
                 }
             }
 
-            void RotateImg(object sender, EventArgs e, int dir, Ship s)
+            void RotateImg(object sender, EventArgs e, int dir)
             {
-                s.direction += dir;
-                Image img = null;
-                switch (shipID)
-                {
-                    case 0:
-                        img = Resources.Carrier;
-                        break;
-                    case 1:
-                        img = Resources.Battleship;
-                        break;
-                    case 2:
-                        img = Resources.Destroyer;
-                        break;
-                    case 3:
-                        img = Resources.Submarine;
-                        break;
-                    case 4:
-                        img = Resources.PatrolBoat;
-                        break;
-                    default:
-                        break;
-                }
-
-                if (img != null)
-                {
-                    RotatePB.Image = img;
-                    RotatedImage(img, s.direction);
-                }
+                selectedShip.direction += dir;
+                if (selectedShip.direction < 0) { selectedShip.direction = 270; }
+                else if(selectedShip.direction==360) { selectedShip.direction = 0; }
+                SelectShip(shipID);
             }
             return new TableLayoutPanel[] { shipsPanel, RotatePanel};
         }
