@@ -122,6 +122,7 @@
       <DependentUpon>Sudoku.cs</DependentUpon>
     </Compile>
     <Compile Include="Games\Snake\Vector2.cs" />
+    <Compile Include="SqlConnectionHandler.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,7 +133,7 @@
       <DependentUpon>Sudoku.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -191,6 +192,8 @@
     <None Include="Resources\head.png" />
     <None Include="Resources\tail.png" />
     <None Include="Resources\record.png" />
+    <None Include="Resources\turn2.png" />
+    <None Include="Resources\tail2.png" />
     <Content Include="Resources\water24.png" />
   </ItemGroup>
   <ItemGroup />

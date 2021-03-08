@@ -32,8 +32,8 @@ namespace Logic_games
         private List<PictureBox> activeSprites = new List<PictureBox>();
 
         public int score = -1;
-        bool headColor = true;
-        bool tailColor = false;
+        bool headColor = false;
+        bool tailColor = true;
 
         Timer timer = new Timer();
         Random rng = new Random();
@@ -55,7 +55,7 @@ namespace Logic_games
             panel.BackColor = backgroundColor;
             DoubleBuffered = true;
             timer.Tick += new EventHandler(Update);
-            StartGame();
+            startButton.Location = new Point((Width / 2) - (startButton.Size.Width / 2), (Height / 2) - (startButton.Size.Height / 2));
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -89,16 +89,30 @@ namespace Logic_games
             }
             CreateSprite(Properties.Resources.head, positions[0]);
             CreateSprite(Properties.Resources.body, positions[1]);
-            CreateSprite(Properties.Resources.tail, positions[2]);
+            CreateSprite(Properties.Resources.tail2, positions[2]);
+            bool color = true;
+            for (int i = 0; i < activeSprites.Count; i++)
+            {
+                activeSprites[i].BackColor = color ? backColor1 : backColor2;
+                color = !color;
+            }
         }
 
         private void StartGame() {
+            var highScore = SqlConnectionHandler.Query("SELECT MAX(score) FROM snake");
+            if (highScore.Count != 0 && highScore[0][0] != "")
+            {
+                recordText.Text = highScore[0][0];
+            }
+            else recordText.Text = "0";
             SnakeSpawn();
 
             timer.Interval = Tick;
 
             CreateSprite(Properties.Resources.apple, new Vector2(), -2);
             NewApplePosition();
+            headColor = false;
+            tailColor = true;
 
             timer.Start();
         }
@@ -107,8 +121,8 @@ namespace Logic_games
         private void Update(object sender, EventArgs e) {
             Bitmap headImage = Properties.Resources.head;
             Bitmap bodyImage = Properties.Resources.body;
-            Bitmap turnImage = Properties.Resources.turn;
-            Bitmap tailImage = Properties.Resources.tail;
+            Bitmap turnImage = Properties.Resources.turn2;
+            Bitmap tailImage = Properties.Resources.tail2;
 
             Vector2 previousHeadPosition = positions[0];
             Vector2 nextLocation = positions[0] + nextMove;
@@ -159,6 +173,10 @@ namespace Logic_games
 
             if (nextLocation.x >= ClientRectangle.Width || nextLocation.x < xOffset || nextLocation.y >= ClientRectangle.Height || nextLocation.y < yOffset) 
             {
+                if (nextLocation.y < yOffset) 
+                {
+                    activeSprites[0].BackColor = backgroundColor;
+                }
                 GameEnd();
             }
 
@@ -240,6 +258,8 @@ namespace Logic_games
         private void GameEnd() 
         {
             timer.Stop();
+            SqlConnectionHandler.RunNonQuery($"INSERT INTO snake (score) VALUES({score})");
+            panel.Location = new Point((Width/2)-(panel.Size.Width/2), (Height / 2) - (panel.Size.Height / 2));
             panel.Visible = true;
         }
 
@@ -279,6 +299,13 @@ namespace Logic_games
         {
             panel.Visible = false;
             Close();
+        }
+
+        private void startButton_Click(object sender, EventArgs e)
+        {
+            startButton.Visible = false;
+            Focus();
+            StartGame();
         }
     }
 }

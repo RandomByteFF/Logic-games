@@ -14,6 +14,7 @@ namespace Logic_games
     {
         public LogicGames()
         {
+            int returnValue = SqlConnectionHandler.InitialSetup();
             InitializeComponent();
         }
 
