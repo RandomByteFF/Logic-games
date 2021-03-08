@@ -11,7 +11,6 @@ namespace Logic_games.Games.Battleship
         {
             public int[] coordinates;
         }
-
         public playerBoard(TableLayoutPanel gamePanel)
         {
             gamePanel.Anchor = AnchorStyles.None;
@@ -19,6 +18,8 @@ namespace Logic_games.Games.Battleship
             gamePanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
             gamePanel.ColumnCount = 11;
             gamePanel.RowCount = 11;
+            gamePanel.ColumnStyles.Clear();
+            gamePanel.RowStyles.Clear();
             gamePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
             gamePanel.RowStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
             for (int i = 0; i < 10; i++)
@@ -49,5 +50,6 @@ namespace Logic_games.Games.Battleship
                 ImgClick?.Invoke(this, new ImgClickEventArgs { coordinates = c });
             }
         }
+
     }
 }

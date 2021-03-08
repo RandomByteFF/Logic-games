@@ -26,6 +26,34 @@ namespace Logic_games.Games.Battleship
             components = images;
         }
 
-        
+        public void placeShip(TableLayoutPanel board, int[,] placement) 
+        {
+            Image img;
+            void Place(int x, int y)
+            {
+                placement[x, y] = 1;
+                PictureBox cell = (PictureBox)board.GetControlFromPosition(x + 1, y + 1);
+                cell.BackgroundImage = img;
+                phase1.RotatedImage(img, direction);
+            }
+            if (direction == 90 || direction == 270)
+            {
+                int j = direction == 90 ? 1 : -1;
+                for (int i = 0; i < size; i++)
+                {
+                    img = components[i];
+                    Place(X + (j * i), Y);
+                }
+            }
+            else
+            {
+                int j = direction == 180 ? 1 : -1;
+                for (int i = 0; i < size; i++)
+                {
+                    img = components[i];
+                    Place(X, Y + (j * i));
+                }
+            }
+        }
     }
 }

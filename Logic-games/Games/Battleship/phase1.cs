@@ -12,7 +12,7 @@ namespace Logic_games.Games.Battleship
     {
         TableLayoutPanel gamePanel, gameLP1, rightMenuPanel;
         public static AnchorStyles str = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        static int carrierC = 0, battleshipC = 0, destroyerC = 0, submarineC = 0, patrolboatC = 1, shipID = -1;
+        static int carrierC = 1, battleshipC = 0, destroyerC = 0, submarineC = 0, patrolboatC = 1, shipID = -1;
         //static int carrierC = 1, battleshipC = 2, destroyerC = 3, submarineC = 4, patrolboatC = 5, shipID = -1;
         public int remaining = carrierC + battleshipC + destroyerC + submarineC + patrolboatC;
         int[,] placement;
@@ -66,18 +66,6 @@ namespace Logic_games.Games.Battleship
             for (int i = 0; i < patrolboatC; i++) { patrolboats.Add(new Ship(2, new Image[] { Resources.patrolBoat1, Resources.patrolBoat2 })); }
             inventory = new List<List<Ship>>() { carriers, battleships, destroyers, submarines, patrolboats };
         }
-        private void ImgClick(object sender, EventArgs e, int[] coordinates)
-        {
-            if (shipID != -1 && selectedShip != null)
-            {
-                selectedShip.X = coordinates[0] - 1;
-                selectedShip.Y = coordinates[1] - 1;
-                if (Placeable(coordinates, selectedShip.direction))
-                {
-                    TakeShip(shipID);
-                }
-            }
-        }
         private void TakeShip(int shipID)
         {
             int a = int.Parse(shipAmount[shipID].Text);
@@ -90,7 +78,17 @@ namespace Logic_games.Games.Battleship
                     shipAmount[shipID].BackColor = Color.Black;
                     shipSelection[shipID].BackColor = Color.Black;
                 }
-                VisualizedShipPlacement(selectedShip);
+
+                selectedShip.placeShip(gamePanel, placement);
+
+                if (remaining == 0)
+                {
+                    Finished?.Invoke(this, EventArgs.Empty);
+                }
+                else
+                {
+                    SelectShip(shipID);
+                }
             }
         }
         private bool Placeable(int[] c, int direction)
@@ -137,46 +135,6 @@ namespace Logic_games.Games.Battleship
             }
             else { return false; }
         }
-        private void VisualizedShipPlacement(Ship ship)
-        {
-            Image[] images = ship.components;
-            Image img;
-            void Place(int x, int y)
-            {
-                placement[x, y] = 1;
-                PictureBox cell = (PictureBox)gamePanel.GetControlFromPosition(x + 1, y + 1);
-                cell.BackgroundImage = img;
-                RotatedImage(img, ship.direction);
-            }
-            if (ship.direction == 90 || ship.direction == 270)
-            {
-                int j = ship.direction == 90 ? 1 : -1;
-                for (int i = 0; i < ship.size; i++)
-                {
-                    img = images[i];
-                    Place(ship.X + (j * i), ship.Y);
-                }
-            }
-            else
-            {
-                int j = ship.direction == 180 ? 1 : -1;
-                for (int i = 0; i < ship.size; i++)
-                {
-                    img = images[i];
-                    Place(ship.X, ship.Y + (j * i));
-                }
-            }
-
-            if (remaining == 0)
-            {
-                Finished?.Invoke(this, EventArgs.Empty);
-            }
-            else
-            {
-                SelectShip(shipID);
-            }
-        }
-
         
         private void SelectShip(int ID)
         {
@@ -213,7 +171,7 @@ namespace Logic_games.Games.Battleship
                 RotatedImage(img, selectedShip.direction);
             }
         }
-        private void RotatedImage(Image img, int direction)
+        public static void RotatedImage(Image img, int direction)
         {
             if (direction == 360)
             {
@@ -227,17 +185,24 @@ namespace Logic_games.Games.Battleship
             else if (direction == 180) { img.RotateFlip(RotateFlipType.Rotate90FlipNone); }
             else if (direction == 270) { img.RotateFlip(RotateFlipType.Rotate180FlipNone); }
         }
-        public void DeleteItems()
+        public void DeleteItems(int lvl)
         {
-            gameLP1.Hide();
+            remaining = carrierC + battleshipC + destroyerC + submarineC + patrolboatC;
             shipSelection.Clear();
             shipAmount.Clear();
-            rightMenuPanel.Dispose();
-
-            gameLP1.ColumnStyles.Clear();
-            gameLP1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
-            gameLP1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
-            gameLP1.Show();
+            if (lvl == 2)
+            {
+                rightMenuPanel.Dispose();
+                gamePanel.Dispose();
+                gameLP1.ColumnStyles.Clear();
+                gameLP1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
+                gameLP1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
+            }
+            else 
+            {
+                rightMenuPanel.Controls.Clear();
+                gamePanel.Controls.Clear();
+            }
         }
         private TableLayoutPanel[] RightPanels()
         {

@@ -132,7 +132,7 @@
       <DependentUpon>Sudoku.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -180,6 +180,7 @@
     <None Include="Resources\Battleship\Grey\submarine1.png" />
     <None Include="Resources\Battleship\Grey\submarine2.png" />
     <None Include="Resources\Battleship\Grey\submarine3.png" />
+    <None Include="Resources\Battleship\rainyhearts.ttf" />
     <None Include="Resources\Battleship\Ships\Battleship.png" />
     <None Include="Resources\Battleship\Ships\Carrier.png" />
     <None Include="Resources\Battleship\Ships\Destroyer.png" />

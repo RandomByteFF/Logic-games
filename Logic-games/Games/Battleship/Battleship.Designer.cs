@@ -20,6 +20,8 @@
             base.Dispose(disposing);
         }
 
+
+        public static System.Drawing.Text.PrivateFontCollection pfc = new System.Drawing.Text.PrivateFontCollection();
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -45,7 +47,12 @@
             this.gamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.headerPB)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
+            // customFont
+            //
+            pfc.AddFontFile("pixelfont.ttf");
+            System.Drawing.Font pixel = new System.Drawing.Font(pfc.Families[0], 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            //
             // menuPanel
             // 
             this.menuPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -90,7 +97,7 @@
             // 
             // backBtn
             // 
-            this.backBtn.Font = new System.Drawing.Font("Leelawadee", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backBtn.Font = pixel;
             this.backBtn.Location = new System.Drawing.Point(224, 164);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(61, 21);
@@ -101,7 +108,7 @@
             // 
             // gameModeCB
             // 
-            this.gameModeCB.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gameModeCB.Font = pixel;
             this.gameModeCB.FormattingEnabled = true;
             this.gameModeCB.Items.AddRange(new object[] {
             "Single player",
@@ -114,7 +121,7 @@
             // 
             // startBtn
             // 
-            this.startBtn.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startBtn.Font = pixel;
             this.startBtn.Location = new System.Drawing.Point(181, 71);
             this.startBtn.Name = "startBtn";
             this.startBtn.Size = new System.Drawing.Size(104, 25);
@@ -144,9 +151,12 @@
             // 
             // gamePanel
             // 
+            this.gamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.gamePanel.Controls.Add(this.headerPB, 0, 0);
-            this.gamePanel.Location = new System.Drawing.Point(40, 10);
+            this.gamePanel.Location = new System.Drawing.Point(3, 3);
             this.gamePanel.Name = "gamePanel";
+            this.gamePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.gamePanel.Size = new System.Drawing.Size(200, 100);
             this.gamePanel.TabIndex = 6;
             // 
             // headerPB
@@ -155,10 +165,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.headerPB.BackColor = System.Drawing.Color.Gray;
-            this.headerPB.Location = new System.Drawing.Point(1, 1);
+            this.headerPB.Location = new System.Drawing.Point(0, 0);
             this.headerPB.Margin = new System.Windows.Forms.Padding(0);
             this.headerPB.Name = "headerPB";
-            this.headerPB.Size = new System.Drawing.Size(19, 19);
+            this.headerPB.Size = new System.Drawing.Size(200, 100);
             this.headerPB.TabIndex = 0;
             this.headerPB.TabStop = false;
             // 
@@ -195,6 +205,8 @@
             this.Name = "Battleship";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Battleship";
+            this.ResizeBegin += new System.EventHandler(this.Battleship_ResizeBegin);
+            this.ResizeEnd += new System.EventHandler(this.Battleship_ResizeEnd);
             this.menuPanel.ResumeLayout(false);
             this.menuPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.titlePicture)).EndInit();
