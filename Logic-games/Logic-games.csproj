@@ -162,7 +162,7 @@
     <EmbeddedResource Include="Games\Snake\Snake.resx">
       <DependentUpon>Snake.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="bin\Debug\pixelfont.TTF" />
+    <None Include="Resources\pixelfont.TTF" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -226,6 +226,8 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

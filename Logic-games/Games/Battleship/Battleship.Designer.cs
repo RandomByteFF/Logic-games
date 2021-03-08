@@ -24,7 +24,7 @@
         public static System.Drawing.Font pixel;
         private void addPixel() 
         {
-            pfc.AddFontFile(System.AppDomain.CurrentDomain.BaseDirectory + "pixelfont.ttf");
+            pfc.AddFontFile(System.IO.Path.Combine(System.IO.Path.GetFullPath(@"..\..\"), "Resources/pixelfont.ttf"));
             pixel = new System.Drawing.Font(pfc.Families[0], 9F, System.Drawing.FontStyle.Regular);
             this.menuPanel.Font = pixel;
             this.gameLP1.Font = pixel;
