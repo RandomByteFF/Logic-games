@@ -20,8 +20,15 @@
             base.Dispose(disposing);
         }
 
-
         public static System.Drawing.Text.PrivateFontCollection pfc = new System.Drawing.Text.PrivateFontCollection();
+        public static System.Drawing.Font pixel;
+        private void addPixel() 
+        {
+            pfc.AddFontFile(System.AppDomain.CurrentDomain.BaseDirectory + "pixelfont.ttf");
+            pixel = new System.Drawing.Font(pfc.Families[0], 9F, System.Drawing.FontStyle.Regular);
+            this.menuPanel.Font = pixel;
+            this.gameLP1.Font = pixel;
+        }
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -47,12 +54,7 @@
             this.gamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.headerPB)).BeginInit();
             this.SuspendLayout();
-            //
-            // customFont
-            //
-            pfc.AddFontFile("pixelfont.ttf");
-            System.Drawing.Font pixel = new System.Drawing.Font(pfc.Families[0], 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //
+            // 
             // menuPanel
             // 
             this.menuPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -90,14 +92,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.errorLb.AutoSize = true;
             this.errorLb.ForeColor = System.Drawing.Color.Maroon;
-            this.errorLb.Location = new System.Drawing.Point(89, 100);
+            this.errorLb.Location = new System.Drawing.Point(40, 100);
             this.errorLb.Name = "errorLb";
             this.errorLb.Size = new System.Drawing.Size(0, 13);
             this.errorLb.TabIndex = 4;
             // 
             // backBtn
             // 
-            this.backBtn.Font = pixel;
             this.backBtn.Location = new System.Drawing.Point(224, 164);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(61, 21);
@@ -108,20 +109,18 @@
             // 
             // gameModeCB
             // 
-            this.gameModeCB.Font = pixel;
             this.gameModeCB.FormattingEnabled = true;
             this.gameModeCB.Items.AddRange(new object[] {
             "Single player",
             "Local"});
             this.gameModeCB.Location = new System.Drawing.Point(13, 72);
             this.gameModeCB.Name = "gameModeCB";
-            this.gameModeCB.Size = new System.Drawing.Size(162, 25);
+            this.gameModeCB.Size = new System.Drawing.Size(162, 21);
             this.gameModeCB.TabIndex = 1;
             this.gameModeCB.Text = "Select game mode...";
             // 
             // startBtn
             // 
-            this.startBtn.Font = pixel;
             this.startBtn.Location = new System.Drawing.Point(181, 71);
             this.startBtn.Name = "startBtn";
             this.startBtn.Size = new System.Drawing.Size(104, 25);
@@ -151,11 +150,11 @@
             // 
             // gamePanel
             // 
-            this.gamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.gamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.gamePanel.Controls.Add(this.headerPB, 0, 0);
             this.gamePanel.Location = new System.Drawing.Point(3, 3);
             this.gamePanel.Name = "gamePanel";
-            this.gamePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.gamePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.gamePanel.Size = new System.Drawing.Size(200, 100);
             this.gamePanel.TabIndex = 6;
             // 

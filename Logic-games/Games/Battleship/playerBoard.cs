@@ -1,7 +1,11 @@
-﻿using Logic_games.Properties;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using Logic_games.Properties;
+using Logic_games.Games.Battleship;
+
 namespace Logic_games.Games.Battleship
 {
     class playerBoard
@@ -12,6 +16,23 @@ namespace Logic_games.Games.Battleship
             public int[] coordinates;
         }
         public playerBoard(TableLayoutPanel gamePanel)
+        {
+            Setup(gamePanel);
+        }
+
+        public playerBoard(TableLayoutPanel gamePanel, List<List<Ship>> Inventory) 
+        {
+            Setup(gamePanel);
+            foreach (List<Ship> type in Inventory)
+            {
+                foreach (Ship s in type)
+                {
+                    s.placeShip(gamePanel, new int[10, 10]);
+                }
+            }
+        }
+
+        public void Setup(TableLayoutPanel gamePanel) 
         {
             gamePanel.Anchor = AnchorStyles.None;
             gamePanel.BackgroundImage = Resources.water24;
@@ -50,6 +71,5 @@ namespace Logic_games.Games.Battleship
                 ImgClick?.Invoke(this, new ImgClickEventArgs { coordinates = c });
             }
         }
-
     }
 }

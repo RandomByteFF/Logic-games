@@ -19,7 +19,7 @@ namespace Logic_games.Games.Battleship
         PictureBox RotatePB = new PictureBox { Anchor = str, Margin = new Padding(0), Name = "RotatePB", SizeMode = PictureBoxSizeMode.Zoom };
         List<PictureBox> shipSelection = new List<PictureBox>();
         List<Label> shipAmount = new List<Label>();
-        List<List<Ship>> inventory;
+        public List<List<Ship>> inventory;
         Ship selectedShip;
 
         public phase1(TableLayoutPanel game, TableLayoutPanel gameLP, TableLayoutPanel right, int[,] table) 
@@ -27,6 +27,11 @@ namespace Logic_games.Games.Battleship
             gamePanel = game;
             gameLP1 = gameLP;
             rightMenuPanel = right;
+            placement = table;
+        }
+
+        public phase1(int[,] table) 
+        {
             placement = table;
         }
 
@@ -42,7 +47,7 @@ namespace Logic_games.Games.Battleship
                 {
                     selectedShip.X = e.coordinates[0] - 1;
                     selectedShip.Y = e.coordinates[1] - 1;
-                    if (Placeable(e.coordinates, selectedShip.direction))
+                    if (Placeable(e.coordinates, selectedShip.direction, selectedShip))
                     {
                         TakeShip(shipID);
                     }
@@ -54,17 +59,17 @@ namespace Logic_games.Games.Battleship
             TableLayoutPanel[] Panels = RightPanels();
             rightMenuPanel.Controls.Add(Panels[0], 0, 0);
             rightMenuPanel.Controls.Add(Panels[1], 0, 1);
-            ShipsToInventory();
+            inventory=ShipsToInventory(false);
         }
-        private void ShipsToInventory()
+        public List<List<Ship>> ShipsToInventory(bool random)
         {
             List<Ship> carriers = new List<Ship>(), battleships = new List<Ship>(), destroyers = new List<Ship>(), submarines = new List<Ship>(), patrolboats = new List<Ship>();
-            for (int i = 0; i < carrierC; i++) { carriers.Add(new Ship(5, new Image[] { Resources.carrier1, Resources.carrier2, Resources.carrier3, Resources.carrier4, Resources.carrier5 })); }
-            for (int i = 0; i < battleshipC; i++) { battleships.Add(new Ship(4, new Image[] { Resources.battleship1, Resources.battleship2, Resources.battleship3, Resources.battleship4 })); }
-            for (int i = 0; i < destroyerC; i++) { destroyers.Add(new Ship(3, new Image[] { Resources.destroyer1, Resources.destroyer2, Resources.destroyer3 })); }
-            for (int i = 0; i < submarineC; i++) { submarines.Add(new Ship(3, new Image[] { Resources.submarine1, Resources.submarine2, Resources.submarine3 })); }
-            for (int i = 0; i < patrolboatC; i++) { patrolboats.Add(new Ship(2, new Image[] { Resources.patrolBoat1, Resources.patrolBoat2 })); }
-            inventory = new List<List<Ship>>() { carriers, battleships, destroyers, submarines, patrolboats };
+            for (int i = 0; i < carrierC; i++) { carriers.Add(new Ship(5, new Image[] { Resources.carrier1, Resources.carrier2, Resources.carrier3, Resources.carrier4, Resources.carrier5 }, random)); }
+            for (int i = 0; i < battleshipC; i++) { battleships.Add(new Ship(4, new Image[] { Resources.battleship1, Resources.battleship2, Resources.battleship3, Resources.battleship4 }, random)); }
+            for (int i = 0; i < destroyerC; i++) { destroyers.Add(new Ship(3, new Image[] { Resources.destroyer1, Resources.destroyer2, Resources.destroyer3 }, random)); }
+            for (int i = 0; i < submarineC; i++) { submarines.Add(new Ship(3, new Image[] { Resources.submarine1, Resources.submarine2, Resources.submarine3 }, random)); }
+            for (int i = 0; i < patrolboatC; i++) { patrolboats.Add(new Ship(2, new Image[] { Resources.patrolBoat1, Resources.patrolBoat2 }, random)); }
+            return new List<List<Ship>>() { carriers, battleships, destroyers, submarines, patrolboats };
         }
         private void TakeShip(int shipID)
         {
@@ -91,7 +96,7 @@ namespace Logic_games.Games.Battleship
                 }
             }
         }
-        private bool Placeable(int[] c, int direction)
+        public bool Placeable(int[] c, int direction, Ship s)
         {
             bool Check(int i, int max, int change, bool isX)
             {
@@ -117,21 +122,21 @@ namespace Logic_games.Games.Battleship
                 else { return false; }
             }
 
-            if (selectedShip.direction == 90 && c[0] + selectedShip.size - 1 < 11)
+            if (s.direction == 90 && c[0] + s.size - 1 < 11)
             {
-                return Check(c[0] - 1, c[0] - 1 + selectedShip.size, 1, true);
+                return Check(c[0] - 1, c[0] - 1 + s.size, 1, true);
             }
-            else if (selectedShip.direction == 270 && c[0] - selectedShip.size >= 0)
+            else if (s.direction == 270 && c[0] - s.size >= 0)
             {
-                return Check(c[0] - 1, c[0] - 1 - selectedShip.size, -1, true);
+                return Check(c[0] - 1, c[0] - 1 - s.size, -1, true);
             }
-            else if (selectedShip.direction == 180 && c[1] + selectedShip.size - 1 < 11)
+            else if (s.direction == 180 && c[1] + s.size - 1 < 11)
             {
-                return Check(c[1] - 1, c[1] - 1 + selectedShip.size, 1, false);
+                return Check(c[1] - 1, c[1] - 1 + s.size, 1, false);
             }
-            else if (selectedShip.direction == 0 && c[1] - selectedShip.size >= 0)
+            else if (s.direction == 0 && c[1] - s.size >= 0)
             {
-                return Check(c[1] - 1, c[1] - selectedShip.size, -1, false);
+                return Check(c[1] - 1, c[1] - s.size, -1, false);
             }
             else { return false; }
         }
@@ -194,9 +199,16 @@ namespace Logic_games.Games.Battleship
             {
                 rightMenuPanel.Dispose();
                 gamePanel.Dispose();
+                gameLP1.Controls.Clear();
+                gameLP1.ColumnCount = 2;
                 gameLP1.ColumnStyles.Clear();
                 gameLP1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
                 gameLP1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
+                gameLP1.RowCount = 2;
+                gameLP1.RowStyles.Clear();
+                gameLP1.RowStyles.Add(new RowStyle(SizeType.Percent, 100f));
+                gameLP1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
+                
             }
             else 
             {
@@ -232,7 +244,7 @@ namespace Logic_games.Games.Battleship
                 int id = i - 1;
                 shipSelection.Last().Click += delegate (object sender, EventArgs e) { SelectID(sender, e, id); };
 
-                shipAmount.Add(new Label() { Anchor = str, BackColor = Color.Gray, Font = new Font("Microsoft Sans Serif", 6.75F, FontStyle.Regular), Margin = new Padding(0), Text = ships[i - 1, 1], TextAlign = ContentAlignment.MiddleCenter, Name = ships[i - 1, 0] + "Lb", ForeColor = Color.White });
+                shipAmount.Add(new Label() { Anchor = str, BackColor = Color.Gray, Margin = new Padding(0), Text = ships[i - 1, 1], TextAlign = ContentAlignment.MiddleCenter, Name = ships[i - 1, 0] + "Lb", ForeColor = Color.White });
                 shipsPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 18f));
                 shipsPanel.Controls.Add(shipSelection.Last(), 0, i);
                 shipsPanel.Controls.Add(shipAmount.Last(), 1, i);
