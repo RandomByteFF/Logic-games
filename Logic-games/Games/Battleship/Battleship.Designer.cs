@@ -39,13 +39,11 @@
             this.gamePanel = new System.Windows.Forms.TableLayoutPanel();
             this.headerPB = new System.Windows.Forms.PictureBox();
             this.rightMenuPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.titlePicture)).BeginInit();
             this.gameLP1.SuspendLayout();
             this.gamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.headerPB)).BeginInit();
-            this.rightMenuPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuPanel
@@ -107,8 +105,7 @@
             this.gameModeCB.FormattingEnabled = true;
             this.gameModeCB.Items.AddRange(new object[] {
             "Single player",
-            "Local",
-            "Online"});
+            "Local"});
             this.gameModeCB.Location = new System.Drawing.Point(13, 72);
             this.gameModeCB.Name = "gameModeCB";
             this.gameModeCB.Size = new System.Drawing.Size(162, 25);
@@ -147,37 +144,9 @@
             // 
             // gamePanel
             // 
-            this.gamePanel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.gamePanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gamePanel.BackgroundImage")));
-            this.gamePanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.gamePanel.ColumnCount = 11;
-            this.gamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.gamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
             this.gamePanel.Controls.Add(this.headerPB, 0, 0);
             this.gamePanel.Location = new System.Drawing.Point(40, 10);
             this.gamePanel.Name = "gamePanel";
-            this.gamePanel.RowCount = 11;
-            this.gamePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.gamePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.5F));
-            this.gamePanel.Size = new System.Drawing.Size(400, 400);
             this.gamePanel.TabIndex = 6;
             // 
             // headerPB
@@ -202,30 +171,15 @@
             this.rightMenuPanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.rightMenuPanel.ColumnCount = 1;
             this.rightMenuPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.rightMenuPanel.Controls.Add(this.label1, 0, 2);
             this.rightMenuPanel.Location = new System.Drawing.Point(481, 0);
             this.rightMenuPanel.Margin = new System.Windows.Forms.Padding(0);
             this.rightMenuPanel.Name = "rightMenuPanel";
-            this.rightMenuPanel.RowCount = 3;
+            this.rightMenuPanel.RowCount = 2;
             this.rightMenuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.rightMenuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.rightMenuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.rightMenuPanel.Size = new System.Drawing.Size(248, 421);
             this.rightMenuPanel.TabIndex = 7;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(5, 398);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(238, 21);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "label1";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Battleship
             // 
@@ -247,8 +201,6 @@
             this.gameLP1.ResumeLayout(false);
             this.gamePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.headerPB)).EndInit();
-            this.rightMenuPanel.ResumeLayout(false);
-            this.rightMenuPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -265,6 +217,5 @@
         private System.Windows.Forms.TableLayoutPanel gamePanel;
         private System.Windows.Forms.PictureBox headerPB;
         private System.Windows.Forms.TableLayoutPanel rightMenuPanel;
-        private System.Windows.Forms.Label label1;
     }
 }

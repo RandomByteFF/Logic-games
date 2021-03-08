@@ -104,6 +104,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Games\Battleship\phase1.cs" />
+    <Compile Include="Games\Battleship\playerBoard.cs" />
     <Compile Include="Games\Battleship\ship.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
