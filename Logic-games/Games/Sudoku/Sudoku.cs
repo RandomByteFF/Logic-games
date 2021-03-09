@@ -81,12 +81,13 @@ namespace Logic_games
         static int[,] Fel()
         {
             int[,] meg = new int[9, 9];
-            string con = "server=localhost;user=root;database=Sudoku;password=''";
+            string con = "server=localhost;user=root;database=logicgames;password=''";
             MySqlConnection filo = new MySqlConnection(con);
             filo.Open();
             string pille = "megoldas";
             Random val = new Random();
-            pille += Convert.ToString(val.Next(1, 4));
+            //pille += Convert.ToString(val.Next(1, 4));
+            pille += Convert.ToString(1);
             string ms = "SELECT * FROM " + pille + ";";
             MySqlCommand mc = new MySqlCommand(ms, filo);
             MySqlDataReader rdr = mc.ExecuteReader();
