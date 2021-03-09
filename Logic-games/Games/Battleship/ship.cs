@@ -38,7 +38,7 @@ namespace Logic_games.Games.Battleship
                 placement[x, y] = ID;
                 PictureBox cell = (PictureBox)board.GetControlFromPosition(x + 1, y + 1);
                 cell.BackgroundImage = img;
-                phase1.RotatedImage(img, direction);
+                if (direction != 90) { phase1.RotatedImage(img, direction); }
             }
             if (direction == 90 || direction == 270)
             {
@@ -59,6 +59,8 @@ namespace Logic_games.Games.Battleship
                 }
             }
         }
+
+        
         public void placeShip(int[,] placement) 
         {
             if (direction == 90 || direction == 270)

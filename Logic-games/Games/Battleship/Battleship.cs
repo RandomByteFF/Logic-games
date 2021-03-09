@@ -19,13 +19,12 @@ namespace Logic_games
         bool started1 = false, started2= false, started3 = false;
         public void SetupGame(int p)
         {
-            menuPanel.Visible = false;
+            winPanel.Hide();
             if (p == 0)
             {
                 Bot bot = new Bot();
                 Player p1 = new Player();
-                MakeBoard(p1, bot);
-                
+                MakeBoard(p1, bot);   
             }
             else
             {
@@ -44,12 +43,13 @@ namespace Logic_games
         {
             phase1 Pl = new phase1(gamePanel, gameLP1, rightMenuPanel, Player1);
             Pl.SetupGame();
+            int g = Pl.goal;
             Pl.Finished += WaitingForPlayer;
 
             void WaitingForPlayer(object sender, EventArgs e)
             {
                 gameLP1.Hide();
-                Pl.DeleteItems(p);
+                Pl.DeleteItems();
 
                 if (p != 2)
                 {
@@ -61,7 +61,13 @@ namespace Logic_games
                     gameLP1.Hide();
                     started1 = false;
                     started2 = true;
-                    phase2 Ps = new phase2(gameLP2, waitPanel, Player1, Player2);
+                    phase2 Ps = new phase2(gameLP2, waitPanel, Player2, Player1, g);
+                    Ps.Won +=GameEnd;
+
+                    void GameEnd(object o, phase2.OnWin data)
+                    {
+                        Reset(data.player, data.i);
+                    }
                 }
             }
         }
@@ -70,6 +76,7 @@ namespace Logic_games
         {
             phase1 Pl = new phase1(gamePanel, gameLP1, rightMenuPanel, Player1);
             Pl.SetupGame();
+            int g = Pl.goal;
             Pl.Finished += WaitingForPlayer;
 
             void WaitingForPlayer(object sender, EventArgs e)
@@ -77,8 +84,14 @@ namespace Logic_games
                 gameLP1.Hide();
                 started1 = false;
                 started2 = true;
-                Pl.DeleteItems(2);
-                phase2 Ps = new phase2(gameLP2, waitPanel, Player1, bot);
+                Pl.DeleteItems();
+                phase2 Ps = new phase2(gameLP2, waitPanel, Player1, bot, g);
+                Ps.Won += GameEnd;
+
+                void GameEnd(object o, phase2.OnWin data)
+                {
+                    Reset(data.player, data.i);
+                }
             }
         }
 
@@ -117,7 +130,7 @@ namespace Logic_games
                 gameLP1.Hide();
             }
 
-            if (!gameLP2.Visible)
+            if (!gameLP2.Visible && started2==true)
             {
                 started3 = true;
                 waitPanel.Hide();
@@ -146,7 +159,7 @@ namespace Logic_games
             {
                 gameLP2.Show();
             }
-            else 
+            else if(started3)
             {
                 waitPanel.Show();
             }
@@ -156,10 +169,15 @@ namespace Logic_games
             Close(); //BACK TO MAIN MENU
         }
 
+        private void ContiniueBTN_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
         private void gameModeCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (gameModeCB.SelectedIndex==0) 
-            { 
+            {
                 nameTB1.Visible = false; 
                 nameTB2.Visible = false; 
             }
@@ -168,6 +186,49 @@ namespace Logic_games
                 nameTB1.Visible = true;
                 nameTB2.Visible = true;
             }
+        }
+
+        private void Reset(Player winner, int mode) 
+        {
+            gameModeCB.SelectedIndex = 0;
+            nameTB1.Visible = false;
+            nameTB2.Visible = false;
+            //gameLP2.Hide();
+            gameLP2.Dispose();
+            winPanel.Show();
+            menuPanel.Show();
+            gameLP1.Hide();
+            gameLP2.Hide();
+            waitPanel.Hide();
+            started1 = false;
+            started2 = false;
+            started3 = false;
+            if (mode == 2)
+            {
+                cupPB.Visible = false;
+                statLb.Visible = false;
+                winnerLb.Text = winner.name + " won!";
+            }
+            else 
+            {
+                
+                cupPB.Visible = true;
+                statLb.Visible = true;
+                
+                winnerLb.Text = winner.name + " won!";
+                if (winner.name != "BOT")
+                {
+                    SqlConnectionHandler.RunNonQuery($"INSERT INTO battleship(score) VALUES(1)");
+                }
+                else 
+                {
+                    SqlConnectionHandler.RunNonQuery($"INSERT INTO battleship(score) VALUES(-1)");
+                }
+                List<List<string>> sum= SqlConnectionHandler.Query($"SELECT sum(score) FROM battleship WHERE score = 1");
+                
+                statLb.Text = Convert.ToString("Wins against bot: "+ sum[0][0]);
+            }
+            
         }
     }
 }

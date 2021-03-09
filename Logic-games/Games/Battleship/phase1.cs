@@ -12,9 +12,10 @@ namespace Logic_games.Games.Battleship
     {
         TableLayoutPanel gamePanel, gameLP1, rightMenuPanel;
         public static AnchorStyles str = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        static int carrierC = 1, battleshipC = 0, destroyerC = 0, submarineC = 0, patrolboatC = 1, shipID = -1;
+        static int carrierC = 0, battleshipC = 0, destroyerC = 0, submarineC = 0, patrolboatC = 1, shipID = -1;
         //static int carrierC = 1, battleshipC = 2, destroyerC = 3, submarineC = 4, patrolboatC = 5, shipID = -1;
         public int remaining = carrierC + battleshipC + destroyerC + submarineC + patrolboatC;
+        public int goal= carrierC + battleshipC + destroyerC + submarineC + patrolboatC;
         int[,] placement;
         PictureBox RotatePB = new PictureBox { Anchor = str, Margin = new Padding(0), Name = "RotatePB", SizeMode = PictureBoxSizeMode.Zoom };
         List<PictureBox> shipSelection = new List<PictureBox>();
@@ -193,24 +194,14 @@ namespace Logic_games.Games.Battleship
             else if (direction == 180) { img.RotateFlip(RotateFlipType.Rotate90FlipNone); }
             else if (direction == 270) { img.RotateFlip(RotateFlipType.Rotate180FlipNone); }
         }
-        public void DeleteItems(int lvl)
+        public void DeleteItems()
         {
             player.inventory = new List<List<Ship>>(inventory);
             remaining = carrierC + battleshipC + destroyerC + submarineC + patrolboatC;
             shipSelection.Clear();
             shipAmount.Clear();
-            if (lvl == 2)
-            {
-                rightMenuPanel.Dispose();
-                gamePanel.Dispose();
-                gameLP1.Controls.Clear();
-                gameLP1.Visible = false;
-            }
-            else 
-            {
-                rightMenuPanel.Controls.Clear();
-                gamePanel.Controls.Clear();
-            }
+            rightMenuPanel.Controls.Clear();
+            gamePanel.Controls.Clear();
         }
         private TableLayoutPanel[] RightPanels()
         {

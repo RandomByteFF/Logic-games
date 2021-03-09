@@ -10,12 +10,38 @@ namespace Logic_games.Games.Battleship
 {
     class Player
     {
-        public List<List<Ship>> inventory = new List<List<Ship>>();
+        public List<List<Ship>> inventory = new List<List<Ship>>(), sunk=new List<List<Ship>>();
         public int[,] player = new int[10, 10], map = new int[10, 10];
-        private TableLayoutPanel playerPanel, opponentPanel;
         public string name;
 
         public Player(string n) { name = n; }
         public Player() { name = "You"; }
+
+        public Ship FindByID(int id) 
+        {
+            int i = 0;
+            while (i < inventory.Count) 
+            {
+                int j = 0;
+                while (j < inventory[i].Count && inventory[i][j].ID!=id) 
+                {
+                    j++;
+                }
+                if (j < inventory[i].Count&& inventory[i][j].ID == id)
+                {
+                    return inventory[i][j];
+                }
+                i++;
+            }
+            return null; 
+        }
+
+        public void Clear() 
+        {
+            inventory.Clear();
+            sunk.Clear();
+            map = new int[10, 10];
+            player = new int[10, 10];
+        }
     }
 }

@@ -31,6 +31,9 @@
             this.gameLP1.Font = pixel;
             this.gameLP2.Font = pixel;
             this.waitPanel.Font = new System.Drawing.Font(pfc.Families[1], 14F, System.Drawing.FontStyle.Regular);
+            this.winnerLb.Font = new System.Drawing.Font(pfc.Families[0], 18F, System.Drawing.FontStyle.Regular);
+            this.winPanel.Font = pixel;
+            this.statLb.Font = pixel;
             this.waitLB.Font = new System.Drawing.Font(pfc.Families[1], 30F, System.Drawing.FontStyle.Regular);
         }
         #region Windows Form Designer generated code
@@ -50,6 +53,12 @@
             this.nameTB1 = new System.Windows.Forms.TextBox();
             this.nameTB2 = new System.Windows.Forms.TextBox();
             this.menuPanel = new System.Windows.Forms.Panel();
+            this.winPanel = new System.Windows.Forms.Panel();
+            this.cupPB = new System.Windows.Forms.PictureBox();
+            this.statLb = new System.Windows.Forms.Label();
+            this.winnerLb = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ContiniueBTN = new System.Windows.Forms.Button();
             this.gameLP1 = new System.Windows.Forms.TableLayoutPanel();
             this.gamePanel = new System.Windows.Forms.TableLayoutPanel();
             this.rightMenuPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -59,15 +68,18 @@
             this.waitBTN = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.titlePicture)).BeginInit();
             this.menuPanel.SuspendLayout();
+            this.winPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cupPB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gameLP1.SuspendLayout();
             this.waitPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // startBtn
             // 
-            this.startBtn.Location = new System.Drawing.Point(181, 71);
+            this.startBtn.Location = new System.Drawing.Point(200, 71);
             this.startBtn.Name = "startBtn";
-            this.startBtn.Size = new System.Drawing.Size(104, 25);
+            this.startBtn.Size = new System.Drawing.Size(85, 25);
             this.startBtn.TabIndex = 0;
             this.startBtn.Text = "Start game";
             this.startBtn.UseVisualStyleBackColor = true;
@@ -79,9 +91,9 @@
             this.gameModeCB.Items.AddRange(new object[] {
             "Single player",
             "Local"});
-            this.gameModeCB.Location = new System.Drawing.Point(13, 72);
+            this.gameModeCB.Location = new System.Drawing.Point(11, 72);
             this.gameModeCB.Name = "gameModeCB";
-            this.gameModeCB.Size = new System.Drawing.Size(162, 21);
+            this.gameModeCB.Size = new System.Drawing.Size(183, 21);
             this.gameModeCB.TabIndex = 1;
             this.gameModeCB.Text = "Select game mode...";
             this.gameModeCB.SelectedIndexChanged += new System.EventHandler(this.gameModeCB_SelectedIndexChanged);
@@ -147,6 +159,7 @@
             this.menuPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.menuPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.menuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.menuPanel.Controls.Add(this.winPanel);
             this.menuPanel.Controls.Add(this.nameTB2);
             this.menuPanel.Controls.Add(this.nameTB1);
             this.menuPanel.Controls.Add(this.titlePicture);
@@ -159,6 +172,77 @@
             this.menuPanel.Padding = new System.Windows.Forms.Padding(10);
             this.menuPanel.Size = new System.Drawing.Size(297, 201);
             this.menuPanel.TabIndex = 3;
+            // 
+            // winPanel
+            // 
+            this.winPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.winPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.winPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.winPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.winPanel.Controls.Add(this.cupPB);
+            this.winPanel.Controls.Add(this.statLb);
+            this.winPanel.Controls.Add(this.winnerLb);
+            this.winPanel.Controls.Add(this.pictureBox1);
+            this.winPanel.Controls.Add(this.ContiniueBTN);
+            this.winPanel.Location = new System.Drawing.Point(-1, -1);
+            this.winPanel.Name = "winPanel";
+            this.winPanel.Padding = new System.Windows.Forms.Padding(10);
+            this.winPanel.Size = new System.Drawing.Size(297, 201);
+            this.winPanel.TabIndex = 8;
+            this.winPanel.Visible = false;
+            // 
+            // cupPB
+            // 
+            this.cupPB.BackgroundImage = global::Logic_games.Properties.Resources.record;
+            this.cupPB.Location = new System.Drawing.Point(57, 109);
+            this.cupPB.Name = "cupPB";
+            this.cupPB.Size = new System.Drawing.Size(32, 39);
+            this.cupPB.TabIndex = 8;
+            this.cupPB.TabStop = false;
+            // 
+            // statLb
+            // 
+            this.statLb.AutoSize = true;
+            this.statLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.statLb.Location = new System.Drawing.Point(95, 125);
+            this.statLb.Name = "statLb";
+            this.statLb.Size = new System.Drawing.Size(44, 20);
+            this.statLb.TabIndex = 7;
+            this.statLb.Text = "wins:";
+            this.statLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // winnerLb
+            // 
+            this.winnerLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.winnerLb.Location = new System.Drawing.Point(-1, 59);
+            this.winnerLb.Name = "winnerLb";
+            this.winnerLb.Size = new System.Drawing.Size(297, 47);
+            this.winnerLb.TabIndex = 6;
+            this.winnerLb.Text = "Winner";
+            this.winnerLb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(11, 13);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(272, 43);
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            // 
+            // ContiniueBTN
+            // 
+            this.ContiniueBTN.Location = new System.Drawing.Point(99, 161);
+            this.ContiniueBTN.Name = "ContiniueBTN";
+            this.ContiniueBTN.Size = new System.Drawing.Size(95, 24);
+            this.ContiniueBTN.TabIndex = 3;
+            this.ContiniueBTN.Text = "Continue";
+            this.ContiniueBTN.UseVisualStyleBackColor = true;
+            this.ContiniueBTN.Click += new System.EventHandler(this.ContiniueBTN_Click);
             // 
             // gameLP1
             // 
@@ -229,7 +313,7 @@
             // 
             // waitPanel
             // 
-            this.waitPanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.waitPanel.BackColor = System.Drawing.Color.Silver;
             this.waitPanel.Controls.Add(this.waitLB);
             this.waitPanel.Controls.Add(this.waitBTN);
             this.waitPanel.Location = new System.Drawing.Point(0, 0);
@@ -282,6 +366,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.titlePicture)).EndInit();
             this.menuPanel.ResumeLayout(false);
             this.menuPanel.PerformLayout();
+            this.winPanel.ResumeLayout(false);
+            this.winPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cupPB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.gameLP1.ResumeLayout(false);
             this.waitPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -305,5 +393,11 @@
         private System.Windows.Forms.Panel waitPanel;
         private System.Windows.Forms.Label waitLB;
         private System.Windows.Forms.Button waitBTN;
+        private System.Windows.Forms.Panel winPanel;
+        private System.Windows.Forms.PictureBox cupPB;
+        private System.Windows.Forms.Label statLb;
+        private System.Windows.Forms.Label winnerLb;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button ContiniueBTN;
     }
 }

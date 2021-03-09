@@ -23,13 +23,33 @@ namespace Logic_games.Games.Battleship
             Setup(gamePanel);
         }
 
-        public void InventoryToBoard(List<List<Ship>> Inventory)
+        public void Reset() 
+        {
+            gamePanel.Controls.Clear();
+            Setup(gamePanel);
+        }
+
+        public void InventoryToBoard(List<List<Ship>> Inventory, TableLayoutPanel board)
         {
             foreach (List<Ship> type in Inventory)
             {
                 foreach (Ship s in type)
                 {
-                    s.placeShip(gamePanel, new int[10, 10]);
+                    s.placeShip(board, new int[10, 10]);
+                }
+            }
+        }
+
+        public void GuessBoard(int[,] map) 
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    Image[] states = new Image[] { Resources.Notclicked, Resources.Miss, Resources.Hit };
+                    PictureBox cell = (PictureBox)gamePanel.GetControlFromPosition(i + 1, j + 1);
+                    cell.SizeMode = PictureBoxSizeMode.Zoom;
+                    cell.Image =states[map[i, j]];
                 }
             }
         }
@@ -59,14 +79,19 @@ namespace Logic_games.Games.Battleship
                 gamePanel.Controls.Add(new Label() { Text = Convert.ToChar(64 + i) + "", Padding = new Padding(0), Margin = new Padding(0), TextAlign = (ContentAlignment)32, BackColor = Color.Gray, Anchor = phase1.str }, 0, i);
                 gamePanel.Controls.Add(new Label() { Text = i + "", Padding = new Padding(0), Margin = new Padding(0), TextAlign = (ContentAlignment)32, BackColor = Color.Gray, Anchor = phase1.str }, i, 0);
             }
+            DefaultCells();
+        }
+
+        private void DefaultCells()
+        { 
             //CELLS
-            for (int i = 1; i < 11; i++)
+            for (int i = 1; i< 11; i++)
             {
-                for (int j = 1; j < 11; j++)
+                for (int j = 1; j< 11; j++)
                 {
                     gamePanel.Controls.Add(new PictureBox() { Anchor = phase1.str, BackColor = Color.Transparent, BackgroundImageLayout = ImageLayout.Stretch, Margin = new Padding(0), Tag = "i" + " j" }, i, j);
                     int[] coordinates = new int[] { i, j };
-                    gamePanel.Controls[gamePanel.Controls.Count - 1].Click += delegate (object sender, EventArgs e) { ThisClick(sender, e, coordinates); };
+                    gamePanel.Controls[gamePanel.Controls.Count - 1].Click += delegate (object sender, EventArgs e) { ThisClick(sender, e, coordinates);};
                 }
             }
             void ThisClick(object sender, EventArgs e, int[] c)

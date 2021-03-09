@@ -52,6 +52,7 @@ namespace Logic_games
                     {
                         val[i, j] = meg[i, j];
                     }
+                   
                 }
             }
             for(int i = 0; i < 9; i++)
@@ -74,18 +75,18 @@ namespace Logic_games
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
+            
         }
 
         static int[,] Fel()
         {
             int[,] meg = new int[9, 9];
-            string con = "server=localhost;user=root;database=logicgames;password=''";
+            string con = "server=localhost;user=root;database=Sudoku;password=''";
             MySqlConnection filo = new MySqlConnection(con);
             filo.Open();
             string pille = "megoldas";
             Random val = new Random();
-            //pille += Convert.ToString(val.Next(1, 4));
-            pille += Convert.ToString(1);
+            pille += Convert.ToString(val.Next(1, 4));
             string ms = "SELECT * FROM " + pille + ";";
             MySqlCommand mc = new MySqlCommand(ms, filo);
             MySqlDataReader rdr = mc.ExecuteReader();
@@ -126,9 +127,9 @@ namespace Logic_games
                 if (e.ColumnIndex < 3) { j = 2; }
                 else if (e.ColumnIndex < 6) { j = 5; }
                 else { j = 8; }
-                if (e.RowIndex < 3) { i = 0; k = 3; }
-                else if (e.RowIndex < 6) { i = 3; k = 6; }
-                else { i = 6; k = 9; }
+                if (e.RowIndex < 3) { i = 0;k = 3; }
+                else if (e.RowIndex < 6) { i = 3;k = 6; }
+                else { i = 6;k = 9; }
                 while (gode && i < k)
                 {
                     if (dataGridView1.Rows[i].Cells[j - 2].Value != null)

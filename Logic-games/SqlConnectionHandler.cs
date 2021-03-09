@@ -17,38 +17,21 @@ namespace Logic_games
         static public int InitialSetup() 
         {
             string connStr = "server=localhost;user=root;password=''";
-            string databaseCreateSql =  $"CREATE DATABASE IF NOT EXISTS {database};"+
+            string databaseCrateSql =   $"CREATE DATABASE IF NOT EXISTS {database};"+
                                         $"USE {database};" +
-
                                         $"CREATE TABLE IF NOT EXISTS snake " +
                                         $"(id int PRIMARY KEY AUTO_INCREMENT, " +
-                                        $"score int);" +
-
-                                        $"CREATE TABLE IF NOT EXISTS megoldas1 " + 
-                                        $"(`1` int, `2` int, `3` int, `4` int, `5` int, `6` int, `7` int, `8` int, `9` int);";
-
+                                        $"score int);"+
+                                        $"CREATE TABLE IF NOT EXISTS battleship " +
+                                        $"(id int PRIMARY KEY AUTO_INCREMENT, " +
+                                        $"score int);";
             connection = new MySqlConnection(connStr);
             try
             {
                 connection.Open();
-                MySqlCommand command = new MySqlCommand(databaseCreateSql, connection);
+                MySqlCommand command = new MySqlCommand(databaseCrateSql, connection);
                 command.ExecuteNonQuery();
                 connection.Close();
-                var ifExists = Query("SELECT COUNT(`1`) FROM megoldas1");
-                if (ifExists[0][0] == "0")
-                {
-                    string generateTable =  "INSERT INTO megoldas1 VALUES " +
-                                            "(8, 3, 7, 1, 9, 4, 6, 2, 5), " +
-                                            "(5, 4, 9, 6, 2, 3, 7, 8, 1), " +
-                                            "(6, 2, 1, 7, 8, 5, 9, 3, 4), " +
-                                            "(2, 5, 6, 8, 1, 7, 4, 9, 3), " +
-                                            "(4, 1, 3, 5, 6, 9, 2, 7, 8), " +
-                                            "(9, 7, 8, 3, 4, 2, 5, 1, 6), " +
-                                            "(1, 6, 4, 2, 7, 8, 3, 5, 9), " +
-                                            "(7, 9, 5, 4, 3, 1, 8, 6, 2), " +
-                                            "(3, 8, 2, 9, 5, 6, 1, 4, 7);";
-                    RunNonQuery(generateTable);
-                }
                 return 0;
             }
             catch (Exception e)
