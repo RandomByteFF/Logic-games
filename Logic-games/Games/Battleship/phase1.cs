@@ -12,8 +12,8 @@ namespace Logic_games.Games.Battleship
     {
         TableLayoutPanel gamePanel, gameLP1, rightMenuPanel;
         public static AnchorStyles str = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        static int carrierC = 0, battleshipC = 0, destroyerC = 0, submarineC = 0, patrolboatC = 1, shipID = -1;
-        //static int carrierC = 1, battleshipC = 2, destroyerC = 3, submarineC = 4, patrolboatC = 5, shipID = -1;
+        //static int carrierC = 0, battleshipC = 0, destroyerC = 0, submarineC = 0, patrolboatC = 1, shipID = -1;
+        static int carrierC = 1, battleshipC = 2, destroyerC = 3, submarineC = 4, patrolboatC = 5, shipID = -1;
         public int remaining = carrierC + battleshipC + destroyerC + submarineC + patrolboatC;
         public int goal= carrierC + battleshipC + destroyerC + submarineC + patrolboatC;
         int[,] placement;
