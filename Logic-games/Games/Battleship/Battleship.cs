@@ -10,33 +10,37 @@ namespace Logic_games
 {
     public partial class Battleship : Form
     {
-        //public static int carrierC = 1, battleshipC = 0, destroyerC = 0, submarineC = 0, patrolboatC = 1, shipID = -1;
-        public static int carrierC = 1, battleshipC = 2, destroyerC = 3, submarineC = 4, patrolboatC = 5, shipID = -1;
         public Battleship()
         {
             InitializeComponent();
             addPixel();
             gameLP1.Visible = false;
         }
-        
-        string player = "Second players'";
-        bool started = false;
-        public void SetupGame(int p) 
+        bool started1 = false, started2= false, started3 = false;
+        public void SetupGame(int p)
         {
             menuPanel.Visible = false;
             if (p == 0)
             {
-                int[,] Player1 = new int[10, 10];
-                MakeBoard(Player1);
+                Bot bot = new Bot();
+                Player p1 = new Player();
+                MakeBoard(p1, bot);
+                
             }
-            else 
+            else
             {
-                int[,] Player1 = new int[10, 10], Player2 = new int[10, 10];
-                MakeBoard(Player1, Player2, 1);
+                string name="";
+                if (nameTB1.Text.Length == 0) { name = "Player 1"; }
+                else { name = nameTB1.Text; }
+                Player p1 = new Player(name);
+                if (nameTB2.Text.Length == 0) { name = "Player 2"; }
+                else { name = nameTB2.Text; }
+                Player p2 = new Player(name);
+                MakeBoard(p1, p2, 1);
             }
         }
 
-        private void MakeBoard(int[,] Player1, int[,] Player2, int p)
+        private void MakeBoard(Player Player1, Player Player2, int p)
         {
             phase1 Pl = new phase1(gamePanel, gameLP1, rightMenuPanel, Player1);
             Pl.SetupGame();
@@ -49,49 +53,49 @@ namespace Logic_games
 
                 if (p != 2)
                 {
-                    Change();
+                    Change(Player2.name);
                     MakeBoard(Player2, Player1, 2);
                 }
                 else
                 {
-                    gameLP1.Show();
-                    phase2 Ps = new phase2(gameLP1);
+                    gameLP1.Hide();
+                    started1 = false;
+                    started2 = true;
+                    phase2 Ps = new phase2(gameLP2, waitPanel, Player1, Player2);
                 }
             }
         }
 
-        private void MakeBoard(int[,] Player) 
+        private void MakeBoard(Player Player1, Bot bot)
         {
-            phase1 Pl = new phase1(gamePanel, gameLP1, rightMenuPanel, Player);
+            phase1 Pl = new phase1(gamePanel, gameLP1, rightMenuPanel, Player1);
             Pl.SetupGame();
-            Bot bot = new Bot();
             Pl.Finished += WaitingForPlayer;
-            
+
             void WaitingForPlayer(object sender, EventArgs e)
             {
                 gameLP1.Hide();
-                List<List<Ship>> Inventory= new List<List<Ship>>(Pl.inventory);
+                started1 = false;
+                started2 = true;
                 Pl.DeleteItems(2);
-                phase2 Ps = new phase2(gameLP1, Inventory, Player);
+                phase2 Ps = new phase2(gameLP2, waitPanel, Player1, bot);
             }
         }
 
-        private void Change() 
+        private void Change(string player) 
         {
             Visible = false;
-            DialogResult res = MessageBox.Show(player+" turn", "GAME", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DialogResult res = MessageBox.Show(player+"'s turn", "GAME", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (res == DialogResult.OK || res == DialogResult.None)
             {
                 Visible = true;
             }
-            if (player == "Second players'") { player = "First players'"; }
-            else { player = "Second players'"; }
         }
 
         private void startBtn_Click(object sender, EventArgs e)
         {
             errorLb.Text = "";
-            started = true;
+            started1 = true;
             switch (gameModeCB.SelectedIndex)
             {
                 case 0:
@@ -108,16 +112,43 @@ namespace Logic_games
 
         private void Battleship_ResizeBegin(object sender, EventArgs e)
         {
-            if (started) 
+            if (started1)
             {
                 gameLP1.Hide();
-            }   
+            }
+
+            if (!gameLP2.Visible)
+            {
+                started3 = true;
+                waitPanel.Hide();
+            }
+            else 
+            {
+                started3 = false;
+            }
+            
+            if (started2 && !started3)
+            {
+                gameLP2.Hide();
+            }
         }
         private void Battleship_ResizeEnd(object sender, EventArgs e)
         {
-            if (started)
+            waitPanel.Size = Size;
+            waitLB.Width = waitPanel.Width;
+            waitBTN.Width = waitPanel.Width;
+            waitBTN.Location = new Point(0, waitPanel.Height - waitBTN.Height-20);
+            if (started1)
             {
                 gameLP1.Show();
+            }
+            else if (started2 && !started3)
+            {
+                gameLP2.Show();
+            }
+            else 
+            {
+                waitPanel.Show();
             }
         }
         private void backBtn_Click(object sender, EventArgs e)
@@ -125,15 +156,18 @@ namespace Logic_games
             Close(); //BACK TO MAIN MENU
         }
 
-        public List<List<Ship>> ShipsToInventory(bool random)
+        private void gameModeCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<Ship> carriers = new List<Ship>(), battleships = new List<Ship>(), destroyers = new List<Ship>(), submarines = new List<Ship>(), patrolboats = new List<Ship>();
-            for (int i = 0; i < carrierC; i++) { carriers.Add(new Ship(5, new Image[] { Resources.carrier1, Resources.carrier2, Resources.carrier3, Resources.carrier4, Resources.carrier5 }, random)); }
-            for (int i = 0; i < battleshipC; i++) { battleships.Add(new Ship(4, new Image[] { Resources.battleship1, Resources.battleship2, Resources.battleship3, Resources.battleship4 }, random)); }
-            for (int i = 0; i < destroyerC; i++) { destroyers.Add(new Ship(3, new Image[] { Resources.destroyer1, Resources.destroyer2, Resources.destroyer3 }, random)); }
-            for (int i = 0; i < submarineC; i++) { submarines.Add(new Ship(3, new Image[] { Resources.submarine1, Resources.submarine2, Resources.submarine3 }, random)); }
-            for (int i = 0; i < patrolboatC; i++) { patrolboats.Add(new Ship(2, new Image[] { Resources.patrolBoat1, Resources.patrolBoat2 }, random)); }
-            return new List<List<Ship>>() { carriers, battleships, destroyers, submarines, patrolboats };
+            if (gameModeCB.SelectedIndex==0) 
+            { 
+                nameTB1.Visible = false; 
+                nameTB2.Visible = false; 
+            }
+            else 
+            {
+                nameTB1.Visible = true;
+                nameTB2.Visible = true;
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Logic_games.Games.Battleship
 {
     public class Ship
     {
-        public int size, direction, X, Y, HP;
+        public int size, direction, X, Y, HP, ID;
         public Image[] components;
 
         public void dir(int diff) 
@@ -17,8 +17,9 @@ namespace Logic_games.Games.Battleship
             if (direction < 0) { direction = 270; }
             else if (direction == 360) { direction = 0; }
         }
-        public Ship(int siz, Image[] images, bool random) 
+        public Ship(int siz, Image[] images, bool random, int id) 
         {
+            ID = id;
             size = siz;
             direction = 90;
             HP = siz;
@@ -34,7 +35,7 @@ namespace Logic_games.Games.Battleship
             Image img;
             void Place(int x, int y)
             {
-                placement[x, y] = 1;
+                placement[x, y] = ID;
                 PictureBox cell = (PictureBox)board.GetControlFromPosition(x + 1, y + 1);
                 cell.BackgroundImage = img;
                 phase1.RotatedImage(img, direction);
@@ -65,7 +66,7 @@ namespace Logic_games.Games.Battleship
                 int j = direction == 90 ? 1 : -1;
                 for (int i = 0; i < size; i++)
                 {
-                    placement[X + (j * i), Y] = 1;
+                    placement[X + (j * i)-1, Y-1] = ID;
                 }
             }
             else
@@ -73,7 +74,7 @@ namespace Logic_games.Games.Battleship
                 int j = direction == 180 ? 1 : -1;
                 for (int i = 0; i < size; i++)
                 {
-                    placement[X, Y + (j * i)]=1;
+                    placement[X-1, Y + (j * i)-1]=ID;
                 }
             }
         }

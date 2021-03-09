@@ -21,13 +21,15 @@ namespace Logic_games.Games.Battleship
         List<Label> shipAmount = new List<Label>();
         public List<List<Ship>> inventory;
         Ship selectedShip;
+        Player player;
 
-        public phase1(TableLayoutPanel game, TableLayoutPanel gameLP, TableLayoutPanel right, int[,] table) 
+        public phase1(TableLayoutPanel game, TableLayoutPanel gameLP, TableLayoutPanel right, Player p) 
         {
-            gamePanel = game;
+            player = p;
             gameLP1 = gameLP;
-            rightMenuPanel = right;
-            placement = table;
+            gamePanel = game; //board
+            rightMenuPanel = right; // right side
+            placement = player.player;
         }
 
         public phase1(int[,] table) 
@@ -47,7 +49,7 @@ namespace Logic_games.Games.Battleship
                 {
                     selectedShip.X = e.coordinates[0] - 1;
                     selectedShip.Y = e.coordinates[1] - 1;
-                    if (Placeable(e.coordinates, selectedShip.direction, selectedShip))
+                    if (Placeable(e.coordinates, selectedShip))
                     {
                         TakeShip(shipID);
                     }
@@ -63,12 +65,13 @@ namespace Logic_games.Games.Battleship
         }
         public List<List<Ship>> ShipsToInventory(bool random)
         {
+            int r = remaining;
             List<Ship> carriers = new List<Ship>(), battleships = new List<Ship>(), destroyers = new List<Ship>(), submarines = new List<Ship>(), patrolboats = new List<Ship>();
-            for (int i = 0; i < carrierC; i++) { carriers.Add(new Ship(5, new Image[] { Resources.carrier1, Resources.carrier2, Resources.carrier3, Resources.carrier4, Resources.carrier5 }, random)); }
-            for (int i = 0; i < battleshipC; i++) { battleships.Add(new Ship(4, new Image[] { Resources.battleship1, Resources.battleship2, Resources.battleship3, Resources.battleship4 }, random)); }
-            for (int i = 0; i < destroyerC; i++) { destroyers.Add(new Ship(3, new Image[] { Resources.destroyer1, Resources.destroyer2, Resources.destroyer3 }, random)); }
-            for (int i = 0; i < submarineC; i++) { submarines.Add(new Ship(3, new Image[] { Resources.submarine1, Resources.submarine2, Resources.submarine3 }, random)); }
-            for (int i = 0; i < patrolboatC; i++) { patrolboats.Add(new Ship(2, new Image[] { Resources.patrolBoat1, Resources.patrolBoat2 }, random)); }
+            for (int i = 0; i < carrierC; i++) { carriers.Add(new Ship(5, new Image[] { Resources.carrier1, Resources.carrier2, Resources.carrier3, Resources.carrier4, Resources.carrier5 }, random, r--)); }
+            for (int i = 0; i < battleshipC; i++) { battleships.Add(new Ship(4, new Image[] { Resources.battleship1, Resources.battleship2, Resources.battleship3, Resources.battleship4 }, random, r--)); }
+            for (int i = 0; i < destroyerC; i++) { destroyers.Add(new Ship(3, new Image[] { Resources.destroyer1, Resources.destroyer2, Resources.destroyer3 }, random, r--)); }
+            for (int i = 0; i < submarineC; i++) { submarines.Add(new Ship(3, new Image[] { Resources.submarine1, Resources.submarine2, Resources.submarine3 }, random, r--)); }
+            for (int i = 0; i < patrolboatC; i++) { patrolboats.Add(new Ship(2, new Image[] { Resources.patrolBoat1, Resources.patrolBoat2 }, random, r--)); }
             return new List<List<Ship>>() { carriers, battleships, destroyers, submarines, patrolboats };
         }
         private void TakeShip(int shipID)
@@ -96,20 +99,20 @@ namespace Logic_games.Games.Battleship
                 }
             }
         }
-        public bool Placeable(int[] c, int direction, Ship s)
+        public bool Placeable(int[] c, Ship s)
         {
             bool Check(int i, int max, int change, bool isX)
             {
                 if (isX)
                 {
-                    while (i != max && placement[i, c[1] - 1] == 0)
+                    while (i != max && placement[i, c[1]-1] == 0)
                     {
                         i += change;
                     }
                 }
                 else
                 {
-                    while (i != max && placement[c[0] - 1, i] == 0)
+                    while (i != max && placement[c[0] - 1, i] == 0 )
                     {
                         i += change;
                     }
@@ -136,7 +139,7 @@ namespace Logic_games.Games.Battleship
             }
             else if (s.direction == 0 && c[1] - s.size >= 0)
             {
-                return Check(c[1] - 1, c[1] - s.size, -1, false);
+                return Check(c[1] - 1, c[1] -1 - s.size, -1, false);
             }
             else { return false; }
         }
@@ -192,6 +195,7 @@ namespace Logic_games.Games.Battleship
         }
         public void DeleteItems(int lvl)
         {
+            player.inventory = new List<List<Ship>>(inventory);
             remaining = carrierC + battleshipC + destroyerC + submarineC + patrolboatC;
             shipSelection.Clear();
             shipAmount.Clear();
@@ -200,15 +204,7 @@ namespace Logic_games.Games.Battleship
                 rightMenuPanel.Dispose();
                 gamePanel.Dispose();
                 gameLP1.Controls.Clear();
-                gameLP1.ColumnCount = 2;
-                gameLP1.ColumnStyles.Clear();
-                gameLP1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
-                gameLP1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
-                gameLP1.RowCount = 2;
-                gameLP1.RowStyles.Clear();
-                gameLP1.RowStyles.Add(new RowStyle(SizeType.Percent, 100f));
-                gameLP1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
-                
+                gameLP1.Visible = false;
             }
             else 
             {

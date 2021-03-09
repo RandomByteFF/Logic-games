@@ -15,14 +15,16 @@ namespace Logic_games.Games.Battleship
         {
             public int[] coordinates;
         }
-        public playerBoard(TableLayoutPanel gamePanel)
+
+        public TableLayoutPanel gamePanel;
+        public playerBoard(TableLayoutPanel gp)
         {
+            gamePanel = gp;
             Setup(gamePanel);
         }
 
-        public playerBoard(TableLayoutPanel gamePanel, List<List<Ship>> Inventory) 
+        public void InventoryToBoard(List<List<Ship>> Inventory)
         {
-            Setup(gamePanel);
             foreach (List<Ship> type in Inventory)
             {
                 foreach (Ship s in type)
@@ -51,6 +53,7 @@ namespace Logic_games.Games.Battleship
             gamePanel.Size = new Size(400, 400);
 
             //HEADERS
+            gamePanel.Controls.Add(new Label() { Text = "", Padding = new Padding(0), Margin = new Padding(0), BackColor = Color.Gray, Anchor = phase1.str }, 0, 0);
             for (int i = 1; i < 11; i++)
             {
                 gamePanel.Controls.Add(new Label() { Text = Convert.ToChar(64 + i) + "", Padding = new Padding(0), Margin = new Padding(0), TextAlign = (ContentAlignment)32, BackColor = Color.Gray, Anchor = phase1.str }, 0, i);
