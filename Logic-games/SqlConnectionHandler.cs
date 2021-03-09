@@ -55,7 +55,6 @@ namespace Logic_games
             {
                 return 1;
             }
-
         }
 
         //Used to run SQL commands, which has no return value;
