@@ -40,13 +40,27 @@ namespace Logic_games
         private int Attempts(string table)
         {
             List<List<string>> result = SqlConnectionHandler.Query($"SELECT COUNT(id) FROM {table}");
-            return int.Parse(result[0][0]);
+            if (result.Count > 0)
+            {
+                return int.Parse(result[0][0]);
+            }
+            else 
+            {
+                return 0;
+            }
         }
 
         private int BattleshipWins() 
         {
             List<List<string>> sum = SqlConnectionHandler.Query($"SELECT sum(score) FROM battleship WHERE score = 1");
-            return int.Parse(sum[0][0]);
+            if (sum.Count > 0)
+            {
+                return int.Parse(sum[0][0]);
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }
