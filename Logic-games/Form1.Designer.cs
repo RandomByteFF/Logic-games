@@ -35,38 +35,49 @@
             // 
             // sudokuButton
             // 
+            this.sudokuButton.BackColor = System.Drawing.Color.Khaki;
+            this.sudokuButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.sudokuButton.FlatAppearance.BorderSize = 0;
+            this.sudokuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sudokuButton.Location = new System.Drawing.Point(200, 120);
             this.sudokuButton.Name = "sudokuButton";
             this.sudokuButton.Size = new System.Drawing.Size(100, 40);
             this.sudokuButton.TabIndex = 0;
             this.sudokuButton.Text = "Sudoku";
-            this.sudokuButton.UseVisualStyleBackColor = true;
+            this.sudokuButton.UseVisualStyleBackColor = false;
             this.sudokuButton.Click += new System.EventHandler(this.sudokuButton_Click);
             // 
             // snakeButton
             // 
+            this.snakeButton.BackColor = System.Drawing.Color.Khaki;
+            this.snakeButton.FlatAppearance.BorderSize = 0;
+            this.snakeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.snakeButton.Location = new System.Drawing.Point(200, 180);
             this.snakeButton.Name = "snakeButton";
             this.snakeButton.Size = new System.Drawing.Size(100, 40);
             this.snakeButton.TabIndex = 1;
             this.snakeButton.Text = "Snake";
-            this.snakeButton.UseVisualStyleBackColor = true;
+            this.snakeButton.UseVisualStyleBackColor = false;
             this.snakeButton.Click += new System.EventHandler(this.snakeButton_Click);
             // 
             // battleshipButton
             // 
+            this.battleshipButton.BackColor = System.Drawing.Color.Khaki;
+            this.battleshipButton.FlatAppearance.BorderSize = 0;
+            this.battleshipButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.battleshipButton.Location = new System.Drawing.Point(200, 240);
             this.battleshipButton.Name = "battleshipButton";
             this.battleshipButton.Size = new System.Drawing.Size(100, 40);
             this.battleshipButton.TabIndex = 2;
             this.battleshipButton.Text = "Battleship";
-            this.battleshipButton.UseVisualStyleBackColor = true;
+            this.battleshipButton.UseVisualStyleBackColor = false;
             this.battleshipButton.Click += new System.EventHandler(this.battleshipButton_Click);
             // 
             // LogicGames
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkCyan;
             this.ClientSize = new System.Drawing.Size(484, 391);
             this.Controls.Add(this.battleshipButton);
             this.Controls.Add(this.snakeButton);
