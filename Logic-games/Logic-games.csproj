@@ -362,6 +362,9 @@
     <None Include="Resources\Battleship\Hit.png" />
     <None Include="Resources\Battleship\Miss.png" />
     <None Include="Resources\Battleship\unclicked.png" />
+    <EmbeddedResource Include="Resources\megoldas1.txt" />
+    <EmbeddedResource Include="Resources\megoldas2.txt" />
+    <EmbeddedResource Include="Resources\megoldas3.txt" />
     <Content Include="Resources\water24.png" />
   </ItemGroup>
   <ItemGroup>

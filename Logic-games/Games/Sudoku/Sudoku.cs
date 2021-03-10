@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.IO;
+using System.Reflection;
 
 namespace Logic_games
 {
@@ -51,11 +52,25 @@ namespace Logic_games
             }
             filo.Close();*/
             int[,] meg = new int[9, 9];
-            string pille = "megoldas";
+            string pille = "";
             Random val = new Random();
             pille += Convert.ToString(val.Next(1, 4));
-            string[] m = File.ReadAllLines(pille + ".txt");
-            for (int i = 0; i < m.Length; i++)
+
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = $"Logic_games.Resources.megoldas{pille}.txt";
+            List<string> m = new List<string>();
+
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                while (!reader.EndOfStream)
+                {
+                    m.Add(reader.ReadLine());
+                }
+            }
+
+            //string[] m = File.ReadAllLines();
+            for (int i = 0; i < m.Count; i++)
             {
                 string[] line = m[i].Split(' ');
                 for (int j = 0; j < 9; j++)
