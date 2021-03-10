@@ -299,8 +299,8 @@
       <DependentUpon>Snake.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Resources\3Dventure.ttf" />
-    <None Include="Resources\adventure.ttf" />
-    <None Include="Resources\pixelfont.TTF" />
+    <EmbeddedResource Include="Resources\adventure.ttf" />
+    <EmbeddedResource Include="Resources\pixelfont.TTF" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

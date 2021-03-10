@@ -10,6 +10,47 @@ namespace Logic_games
 {
     public partial class Battleship : Form
     {
+        public static System.Drawing.Text.PrivateFontCollection pfc = new System.Drawing.Text.PrivateFontCollection();
+        public static Font pixel;
+
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
+            IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
+
+        private void addPixel()
+        {
+            byte[] fontData = Properties.Resources.pixelfont;
+            IntPtr fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
+            System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
+            uint dummy = 0;
+            pfc.AddMemoryFont(fontPtr, Properties.Resources.pixelfont.Length);
+            AddFontMemResourceEx(fontPtr, (uint)Properties.Resources.pixelfont.Length, IntPtr.Zero, ref dummy);
+            System.Runtime.InteropServices.Marshal.FreeCoTaskMem(fontPtr);
+
+            pixel = new Font(pfc.Families[0], 9.0F);
+
+            fontData = Properties.Resources.adventure;
+            fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
+            System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
+            dummy = 0;
+            pfc.AddMemoryFont(fontPtr, Properties.Resources.adventure.Length);
+            AddFontMemResourceEx(fontPtr, (uint)Properties.Resources.adventure.Length, IntPtr.Zero, ref dummy);
+            System.Runtime.InteropServices.Marshal.FreeCoTaskMem(fontPtr);
+
+            pixel = new Font(pfc.Families[0], 9.0F);
+
+            //pfc.AddFontFile(System.IO.Path.Combine(System.IO.Path.GetFullPath(@"..\..\"), "Resources/pixelfont.ttf"));
+            //pfc.AddFontFile(System.IO.Path.Combine(System.IO.Path.GetFullPath(@"..\..\"), "Resources/adventure.ttf"));
+            //pixel = new System.Drawing.Font(pfc.Families[0], 9F, System.Drawing.FontStyle.Regular);
+            this.menuPanel.Font = pixel;
+            this.gameLP1.Font = pixel;
+            this.gameLP2.Font = pixel;
+            this.waitPanel.Font = new System.Drawing.Font(pfc.Families[1], 14F, System.Drawing.FontStyle.Regular);
+            this.winnerLb.Font = new System.Drawing.Font(pfc.Families[0], 18F, System.Drawing.FontStyle.Regular);
+            this.winPanel.Font = pixel;
+            this.statLb.Font = pixel;
+            this.waitLB.Font = new System.Drawing.Font(pfc.Families[1], 30F, System.Drawing.FontStyle.Regular);
+        }
         public Battleship()
         {
             InitializeComponent();
@@ -224,9 +265,15 @@ namespace Logic_games
                 {
                     SqlConnectionHandler.RunNonQuery($"INSERT INTO battleship(score) VALUES(-1)");
                 }
-                List<List<string>> sum= SqlConnectionHandler.Query($"SELECT sum(score) FROM battleship WHERE score = 1");
-                
-                statLb.Text = Convert.ToString("Wins against bot: "+ sum[0][0]);
+                List<List<string>> sum = SqlConnectionHandler.Query($"SELECT sum(score) FROM battleship WHERE score = 1");
+                if (sum.Count > 0)
+                {
+                    statLb.Text = Convert.ToString("Wins against bot: " + sum[0][0]);
+                }
+                else
+                {
+                    statLb.Hide();
+                }
             }
             
         }

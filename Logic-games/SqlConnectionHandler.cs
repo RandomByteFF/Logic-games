@@ -14,6 +14,7 @@ namespace Logic_games
         static private MySqlConnection connection;
         static private string database = "logicgames";
 
+        //Creates the required tables for the program (Only required to call once)
         static public int InitialSetup() 
         {
             string connStr = "server=localhost;user=root;password=''";
@@ -58,6 +59,7 @@ namespace Logic_games
             }
         }
 
+        //Used to run SQL commands with return values, return 2D list
         static public List<List<string>> Query(string query) 
         {
             string connStr = $"server=localhost;user=root;password='';database={database}";

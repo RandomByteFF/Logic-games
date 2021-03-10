@@ -1,4 +1,7 @@
-﻿namespace Logic_games
+﻿using System;
+using System.Drawing;
+
+namespace Logic_games
 {
     partial class Battleship
     {
@@ -20,22 +23,6 @@
             base.Dispose(disposing);
         }
 
-        public static System.Drawing.Text.PrivateFontCollection pfc = new System.Drawing.Text.PrivateFontCollection();
-        public static System.Drawing.Font pixel;
-        private void addPixel() 
-        {
-            pfc.AddFontFile(System.IO.Path.Combine(System.IO.Path.GetFullPath(@"..\..\"), "Resources/pixelfont.ttf"));
-            pfc.AddFontFile(System.IO.Path.Combine(System.IO.Path.GetFullPath(@"..\..\"), "Resources/adventure.ttf"));
-            pixel = new System.Drawing.Font(pfc.Families[0], 9F, System.Drawing.FontStyle.Regular);
-            this.menuPanel.Font = pixel;
-            this.gameLP1.Font = pixel;
-            this.gameLP2.Font = pixel;
-            this.waitPanel.Font = new System.Drawing.Font(pfc.Families[1], 14F, System.Drawing.FontStyle.Regular);
-            this.winnerLb.Font = new System.Drawing.Font(pfc.Families[0], 18F, System.Drawing.FontStyle.Regular);
-            this.winPanel.Font = pixel;
-            this.statLb.Font = pixel;
-            this.waitLB.Font = new System.Drawing.Font(pfc.Families[1], 30F, System.Drawing.FontStyle.Regular);
-        }
         #region Windows Form Designer generated code
 
         /// <summary>
