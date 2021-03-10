@@ -25,7 +25,10 @@ namespace Logic_games
                                         $"score int);"+
                                         $"CREATE TABLE IF NOT EXISTS battleship " +
                                         $"(id int PRIMARY KEY AUTO_INCREMENT, " +
-                                        $"score int);";
+                                        $"score int);"+
+                                        $"CREATE TABLE IF NOT EXISTS times " +
+                                        $"(id int PRIMARY KEY AUTO_INCREMENT, " +
+                                        $"timeSpent TIME);";
             connection = new MySqlConnection(connStr);
             try
             {

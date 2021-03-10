@@ -38,18 +38,14 @@ namespace Logic_games
             System.Runtime.InteropServices.Marshal.FreeCoTaskMem(fontPtr);
 
             pixel = new Font(pfc.Families[0], 9.0F);
-
-            //pfc.AddFontFile(System.IO.Path.Combine(System.IO.Path.GetFullPath(@"..\..\"), "Resources/pixelfont.ttf"));
-            //pfc.AddFontFile(System.IO.Path.Combine(System.IO.Path.GetFullPath(@"..\..\"), "Resources/adventure.ttf"));
-            //pixel = new System.Drawing.Font(pfc.Families[0], 9F, System.Drawing.FontStyle.Regular);
-            this.menuPanel.Font = pixel;
-            this.gameLP1.Font = pixel;
-            this.gameLP2.Font = pixel;
-            this.waitPanel.Font = new System.Drawing.Font(pfc.Families[1], 14F, System.Drawing.FontStyle.Regular);
-            this.winnerLb.Font = new System.Drawing.Font(pfc.Families[0], 18F, System.Drawing.FontStyle.Regular);
-            this.winPanel.Font = pixel;
-            this.statLb.Font = pixel;
-            this.waitLB.Font = new System.Drawing.Font(pfc.Families[1], 30F, System.Drawing.FontStyle.Regular);
+            menuPanel.Font = pixel;
+            gameLP1.Font = pixel;
+            gameLP2.Font = pixel;
+            waitPanel.Font = new System.Drawing.Font(pfc.Families[1], 14F, System.Drawing.FontStyle.Regular);
+            winnerLb.Font = new System.Drawing.Font(pfc.Families[0], 18F, System.Drawing.FontStyle.Regular);
+            winPanel.Font = pixel;
+            statLb.Font = pixel;
+            waitLB.Font = new System.Drawing.Font(pfc.Families[1], 30F, System.Drawing.FontStyle.Regular);
         }
         public Battleship()
         {
@@ -234,8 +230,7 @@ namespace Logic_games
             gameModeCB.SelectedIndex = 0;
             nameTB1.Visible = false;
             nameTB2.Visible = false;
-            //gameLP2.Hide();
-            gameLP2.Dispose();
+            gameLP2.Controls.Clear();
             winPanel.Show();
             menuPanel.Show();
             gameLP1.Hide();

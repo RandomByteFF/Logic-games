@@ -31,6 +31,7 @@
             this.sudokuButton = new System.Windows.Forms.Button();
             this.snakeButton = new System.Windows.Forms.Button();
             this.battleshipButton = new System.Windows.Forms.Button();
+            this.statisticsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // sudokuButton
@@ -73,12 +74,27 @@
             this.battleshipButton.UseVisualStyleBackColor = false;
             this.battleshipButton.Click += new System.EventHandler(this.battleshipButton_Click);
             // 
+            // statisticsButton
+            // 
+            this.statisticsButton.BackColor = System.Drawing.Color.Khaki;
+            this.statisticsButton.FlatAppearance.BorderSize = 0;
+            this.statisticsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.statisticsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.statisticsButton.Location = new System.Drawing.Point(432, 339);
+            this.statisticsButton.Name = "statisticsButton";
+            this.statisticsButton.Size = new System.Drawing.Size(40, 40);
+            this.statisticsButton.TabIndex = 3;
+            this.statisticsButton.Text = "Stats";
+            this.statisticsButton.UseVisualStyleBackColor = false;
+            this.statisticsButton.Click += new System.EventHandler(this.statisticsButton_Click);
+            // 
             // LogicGames
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkCyan;
             this.ClientSize = new System.Drawing.Size(484, 391);
+            this.Controls.Add(this.statisticsButton);
             this.Controls.Add(this.battleshipButton);
             this.Controls.Add(this.snakeButton);
             this.Controls.Add(this.sudokuButton);
@@ -93,6 +109,7 @@
         private System.Windows.Forms.Button sudokuButton;
         private System.Windows.Forms.Button snakeButton;
         private System.Windows.Forms.Button battleshipButton;
+        private System.Windows.Forms.Button statisticsButton;
     }
 }
 

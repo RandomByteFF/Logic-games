@@ -276,6 +276,12 @@
     </Compile>
     <Compile Include="Games\Snake\Vector2.cs" />
     <Compile Include="SqlConnectionHandler.cs" />
+    <Compile Include="Statistics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Statistics.Designer.cs">
+      <DependentUpon>Statistics.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -297,6 +303,9 @@
     </Compile>
     <EmbeddedResource Include="Games\Snake\Snake.resx">
       <DependentUpon>Snake.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Statistics.resx">
+      <DependentUpon>Statistics.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Resources\3Dventure.ttf" />
     <EmbeddedResource Include="Resources\adventure.ttf" />
