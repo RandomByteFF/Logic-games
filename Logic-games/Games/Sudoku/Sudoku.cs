@@ -42,52 +42,35 @@ namespace Logic_games
             int[,] meg = new int[9, 9];
             string pille = "megoldas";
             Random val = new Random();
-            pille += Convert.ToString(val.Next(1, 4));
+            pille += Convert.ToString(1);
+
             try
             {
                  string con = "server=localhost;user=root;database=logicgames;password=''";
-            MySqlConnection filo = new MySqlConnection(con);
-            filo.Open();
-            string ms = "SELECT * FROM " + pille + ";";
-            MySqlCommand mc = new MySqlCommand(ms, filo);
-            MySqlDataReader rdr = mc.ExecuteReader();
-            int i = 0;
-            while (rdr.Read())
-            {
-                for (int j = 0; j < 9; j++)
+                MySqlConnection filo = new MySqlConnection(con);
+                filo.Open();
+                string ms = "SELECT * FROM " + pille + ";";
+                MySqlCommand mc = new MySqlCommand(ms, filo);
+                MySqlDataReader rdr = mc.ExecuteReader();
+                int i = 0;
+                while (rdr.Read())
                 {
-                    meg[i, j] = Convert.ToInt32(rdr[j]);
+                    for (int j = 0; j < 9; j++)
+                    {
+                        meg[i, j] = Convert.ToInt32(rdr[j]);
+                    }
+                    i++;
                 }
-                i++;
-            }
-            filo.Close();
+                filo.Close();
             }
             catch (Exception ex)
             {
-                kapcs = false;
-                var assembly = Assembly.GetExecutingAssembly();
-                var resourceName = $"Logic_games.Resources.megoldas{pille}.txt";
-                List<string> m = new List<string>();
-
-                using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    while (!reader.EndOfStream)
-                    {
-                        m.Add(reader.ReadLine());
-                    }
-                }
-                for (int i = 0; i < m.Count; i++)
-                {
-                    string[] line = m[i].Split(' ');
-                    for (int j = 0; j < 9; j++)
-                    {
-                        meg[i, j] = Convert.ToInt32(line[j]);
-                    }
-                }
+                Environment.Exit(1);
             }
             return meg;
+            
         }
+
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
