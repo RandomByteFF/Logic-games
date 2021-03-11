@@ -23,6 +23,8 @@ namespace Logic_games.Games.Battleship
             InitializeComponent();
             DoubleBuffered = true;
             bot = new BattleshipBot("BOT", player.shipNumbers);
+            leftNameLabel.Text = bot.name;
+            rightNameLabel.Text = player.name;
             leftBoard = player.myBoard;
             leftBoard.DrawGuessBoard(bot.guesses);
 
@@ -51,27 +53,30 @@ namespace Logic_games.Games.Battleship
                     bool hit = false;
                     foreach (BattleshipShip ship in bot.myShips)
                     {
-                        int i = 0;
-                        while (i < ship.size && !(ship.positions[i][0] == x + 1 && ship.positions[i][1] == y + 1))
+                        if (!hit)
                         {
-                            i++;
-                        }
-                        if (i < ship.size)
-                        {
-                            hit = true;
-                            player1.guesses[x, y] = 2;
-                            Hit(new int[] { x, y }, rightBoard);
-                            ship.hp -= 1;
-                            if (ship.hp == 0)
+                            int i = 0;
+                            while (i < ship.size && !(ship.positions[i][0] == x + 1 && ship.positions[i][1] == y + 1))
                             {
-                                Sunk(ship);
+                                i++;
+                            }
+                            if (i < ship.size)
+                            {
+                                hit = true;
+                                player1.guesses[x, y] = 2;
+                                Hit(new int[] { x, y }, rightBoard);
+                                ship.hp -= 1;
+                                if (ship.hp == 0)
+                                {
+                                    Sunk(ship);
+                                }
                             }
                         }
-                        else if(!hit)
-                        {
-                            player1.guesses[x, y] = 1;
-                            Miss(new int[] { x, y }, rightBoard);
-                        }
+                    }
+                    if (!hit)
+                    {
+                        player1.guesses[x, y] = 1;
+                        Miss(new int[] { x, y }, rightBoard);
                     }
                     //BOT GUESS
                     if (!finished)
@@ -80,33 +85,36 @@ namespace Logic_games.Games.Battleship
                         int[] botGuess = bot.Guesser();
                         foreach (BattleshipShip ship in player1.myShips)
                         {
-                            int i = 0, xBot = botGuess[0] + 1, yBot = botGuess[1] + 1;
-                            while (i < ship.size && !(ship.positions[i][0] == xBot && ship.positions[i][1] == yBot))
+                            if (!hit)
                             {
-                                i++;
-                            }
-                            if (i < ship.size)
-                            {
-                                hit = true;
-                                bot.guesses[x, y] = 2;
-                                bot.Hit();
-                                Hit(botGuess, leftBoard);
-                                ship.hp -= 1;
-                                if (ship.hp == 0)
+                                int i = 0, xBot = botGuess[0] + 1, yBot = botGuess[1] + 1;
+                                while (i < ship.size && !(ship.positions[i][0] == xBot && ship.positions[i][1] == yBot))
                                 {
-                                    bot.sunk.Add(ship);
-                                    if (bot.sunk.Count == bot.myShips.Count)
+                                    i++;
+                                }
+                                if (i < ship.size)
+                                {
+                                    hit = true;
+                                    bot.guesses[x, y] = 2;
+                                    bot.Hit();
+                                    Hit(botGuess, leftBoard);
+                                    ship.hp -= 1;
+                                    if (ship.hp == 0)
                                     {
-                                        finished = true;
-                                        Won?.Invoke(this, new OnWin { player = bot });
+                                        bot.sunk.Add(ship);
+                                        if (bot.sunk.Count == bot.myShips.Count)
+                                        {
+                                            finished = true;
+                                            Won?.Invoke(this, new OnWin { player = bot });
+                                        }
                                     }
                                 }
                             }
-                            else if(!hit)
-                            {
-                                bot.guesses[x, y] = 1;
-                                Miss(botGuess, leftBoard);
-                            }
+                        }
+                        if (!hit)
+                        {
+                            bot.guesses[x, y] = 1;
+                            Miss(botGuess, leftBoard);
                         }
                     }
                 }

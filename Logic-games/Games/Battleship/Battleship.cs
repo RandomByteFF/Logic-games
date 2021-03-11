@@ -108,7 +108,7 @@ namespace Logic_games
                 if (sum.Count > 0)
                 {
                     string ammount = Convert.ToString(sum[0][0]);
-                    winStatisticsLabel.Text= "Wins against bot: "+ammount ;
+                    winStatisticsLabel.Text= "Wins against bot: " + ammount;
                 }
                 else
                 {

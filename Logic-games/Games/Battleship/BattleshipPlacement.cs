@@ -64,12 +64,11 @@ namespace Logic_games.Games.Battleship
                 {
                     selectPictureBox[idClicked].BackColor = Color.CadetBlue;
                     selectLabel[idClicked].BackColor = Color.CadetBlue;
-                    
+
                     selected = idClicked;
                     selectedShip = new BattleshipShip(idClicked, shipID); //GIVING SHIP TYPE AND AN ID
                     SetRotatePictureBox();
                 }
-
             }
         }
 
@@ -119,7 +118,7 @@ namespace Logic_games.Games.Battleship
             if (Checker(xDiff, yDiff))
             {
                 //ADDING COORDINATES TO SHIP
-                for (int i = 0; i < ship.size; i++) { ship.positions.Add(new int[] { coordinates[0] + i * xDiff, coordinates[1] + i * yDiff }); }
+                for (int i = 0; i < ship.size; i++) { ship.positions.Add(new int[] { coordinates[0] + (i * xDiff), coordinates[1] + (i * yDiff) }); }
                 //COMPARING BOATS
                 foreach (BattleshipShip item in otherShips)
                 {
@@ -151,8 +150,8 @@ namespace Logic_games.Games.Battleship
                 while ((currX<11 && currX>0)&& (currY < 11 && currY > 0) && i<ship.size)
                 {
                     i++;
-                    currX = coordinates[0] + i * x;
-                    currY = coordinates[1] + i * y;
+                    currX = coordinates[0] + (i * x);
+                    currY = coordinates[1] + (i * y);
                 }
                 //RETURNING RESULT
                 if (i == ship.size)

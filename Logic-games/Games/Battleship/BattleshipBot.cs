@@ -8,8 +8,8 @@ namespace Logic_games.Games.Battleship
 {
     public class BattleshipBot: BattleshipPlayer
     {
-        //Most mindent örököl a playertől
         private List<int> even = new List<int>(), odd = new List<int>();
+        private List<int> all = new List<int>();
         private bool oddMethod = false;
         private Random rand = new Random();
 
@@ -20,11 +20,17 @@ namespace Logic_games.Games.Battleship
         {
             name = n;
             Random rand = new Random();
+            for (int i = 0; i < 100; i++)
+            {
+                all.Add(i);
+            }
+            /*
             for (int i = 0; i < 50; i++)
             {
                 odd.Add(i * 2);
-                even.Add(i * 2 + 1);
+                even.Add((i * 2) + 1);
             }
+            */
             int id = 1;
             BattleshipPlacement x = new BattleshipPlacement(shipNum);
             for (int i = 0; i < 5; i++)
@@ -66,7 +72,7 @@ namespace Logic_games.Games.Battleship
                 if( (x>=0 && x<10) && (y >= 0 && y < 10) && guesses[x,y]==0) 
                 {
                     nextGuess.Add(new int[] { x, y });
-                    int value = x * 10 + y;
+                    int value = (x * 10) + y;
                     if (odd.Contains(value)) 
                     {
                         odd.Remove(value);
@@ -81,33 +87,53 @@ namespace Logic_games.Games.Battleship
 
         public int[] Guesser()
         {
+            Guesses(); 
+            return guess;
+        }
+        public void Guesses()
+        {
+            int index = rand.Next(0, all.Count);
+            int n = all[index];
+            all.RemoveAt(index);
+            int y =  n % 10, x = (n - y) / 10;
+            guess= new int[] { x, y };
+
+            /*
             if (nextGuess.Count > 0) 
             {
                 int index=rand.Next(0, nextGuess.Count);
                 guess = nextGuess[index];
                 nextGuess.RemoveAt(index);
-                return guess;
             }
-            else if (oddMethod)
+            else if (oddMethod && odd.Count > 0)
             {
                 oddMethod = false;
-                return getNum(odd);
+                guess= getNum(odd);
             }
             else
             {
                 oddMethod = true;
-                return getNum(even);
+                guess= getNum(even);
             }
             
             int[] getNum(List<int> nums)
             {
+                if (nums.Count == 0)
+                {
+                    for (int i = 0; i < 50; i++)
+                    {
+                        odd.Add(i * 2);
+                        even.Add((i * 2) + 1);
+                    }
+                }
                 int index = rand.Next(0, nums.Count),
                 n = nums[index];
                 nums.RemoveAt(index);
                 int y = n % 10, x = (n - y) / 10;
-                guess = new int[] { x, y };
-                return guess;
+                return new int[] { x, y };
             }
+            */
+
         }
     }
 }

@@ -58,7 +58,7 @@ namespace Logic_games.Games.Battleship
             {
                 for (int j = 1; j < 11; j++)
                 {
-                    cells[i-1, j-1]= new PictureBox() { Anchor = str, BackColor = Color.Transparent, BackgroundImageLayout = ImageLayout.Stretch, Margin = new Padding(0), Tag = "i" + " j", SizeMode= PictureBoxSizeMode.Zoom }; ;
+                    cells[i-1, j-1]= new PictureBox() { Anchor = str, BackColor = Color.Transparent, BackgroundImageLayout = ImageLayout.Stretch, Margin = new Padding(0), Tag = "i" + " j", SizeMode= PictureBoxSizeMode.Zoom };
                     Controls.Add(cells[i - 1, j - 1], i, j);
                     int[] coords = new int[] { i, j };
                     try

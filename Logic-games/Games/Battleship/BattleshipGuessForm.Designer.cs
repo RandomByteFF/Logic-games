@@ -31,7 +31,7 @@ namespace Logic_games.Games.Battleship
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BattleshipGuessForm));
             this.gamePanel = new System.Windows.Forms.TableLayoutPanel();
-            this.rightNamePanel = new System.Windows.Forms.Label();
+            this.rightNameLabel = new System.Windows.Forms.Label();
             this.leftNameLabel = new System.Windows.Forms.Label();
             this.gamePanel.SuspendLayout();
             this.SuspendLayout();
@@ -43,7 +43,7 @@ namespace Logic_games.Games.Battleship
             this.gamePanel.ColumnCount = 2;
             this.gamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.gamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.gamePanel.Controls.Add(this.rightNamePanel, 0, 1);
+            this.gamePanel.Controls.Add(this.rightNameLabel, 0, 1);
             this.gamePanel.Controls.Add(this.leftNameLabel, 0, 1);
             this.gamePanel.Location = new System.Drawing.Point(0, 0);
             this.gamePanel.Margin = new System.Windows.Forms.Padding(0);
@@ -54,20 +54,20 @@ namespace Logic_games.Games.Battleship
             this.gamePanel.Size = new System.Drawing.Size(800, 450);
             this.gamePanel.TabIndex = 0;
             // 
-            // rightNamePanel
+            // rightNameLabel
             // 
-            this.rightNamePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.rightNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rightNamePanel.AutoSize = true;
-            this.rightNamePanel.BackColor = System.Drawing.Color.DimGray;
-            this.rightNamePanel.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.rightNamePanel.Location = new System.Drawing.Point(401, 422);
-            this.rightNamePanel.Margin = new System.Windows.Forms.Padding(0);
-            this.rightNamePanel.Name = "rightNamePanel";
-            this.rightNamePanel.Size = new System.Drawing.Size(396, 25);
-            this.rightNamePanel.TabIndex = 13;
-            this.rightNamePanel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rightNameLabel.AutoSize = true;
+            this.rightNameLabel.BackColor = System.Drawing.Color.DimGray;
+            this.rightNameLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.rightNameLabel.Location = new System.Drawing.Point(401, 422);
+            this.rightNameLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.rightNameLabel.Name = "rightNameLabel";
+            this.rightNameLabel.Size = new System.Drawing.Size(396, 25);
+            this.rightNameLabel.TabIndex = 13;
+            this.rightNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // leftNameLabel
             // 
@@ -94,8 +94,8 @@ namespace Logic_games.Games.Battleship
             this.Controls.Add(this.gamePanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1920, 1080);
-            this.MinimumSize = new System.Drawing.Size(800, 480);
+            this.MaximumSize = new System.Drawing.Size(816, 489);
+            this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "BattleshipGuessForm";
             this.Text = "Battleship";
             this.gamePanel.ResumeLayout(false);
@@ -107,7 +107,7 @@ namespace Logic_games.Games.Battleship
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel gamePanel;
-        private System.Windows.Forms.Label rightNamePanel;
+        private System.Windows.Forms.Label rightNameLabel;
         private System.Windows.Forms.Label leftNameLabel;
     }
 }
