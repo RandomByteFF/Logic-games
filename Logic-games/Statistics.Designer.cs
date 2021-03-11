@@ -32,7 +32,6 @@ namespace Logic_games
             this.titleLabel = new System.Windows.Forms.Label();
             this.gamesPlayedLabel = new System.Windows.Forms.Label();
             this.snakeLabel = new System.Windows.Forms.Label();
-            this.sudokuLabel = new System.Windows.Forms.Label();
             this.battleshipLabel = new System.Windows.Forms.Label();
             this.playTimeLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -67,20 +66,10 @@ namespace Logic_games
             this.snakeLabel.TabIndex = 2;
             this.snakeLabel.Text = "Snake -";
             // 
-            // sudokuLabel
-            // 
-            this.sudokuLabel.AutoSize = true;
-            this.sudokuLabel.Location = new System.Drawing.Point(34, 81);
-            this.sudokuLabel.Margin = new System.Windows.Forms.Padding(3);
-            this.sudokuLabel.Name = "sudokuLabel";
-            this.sudokuLabel.Size = new System.Drawing.Size(50, 13);
-            this.sudokuLabel.TabIndex = 3;
-            this.sudokuLabel.Text = "Sudoku -";
-            // 
             // battleshipLabel
             // 
             this.battleshipLabel.AutoSize = true;
-            this.battleshipLabel.Location = new System.Drawing.Point(34, 100);
+            this.battleshipLabel.Location = new System.Drawing.Point(34, 81);
             this.battleshipLabel.Margin = new System.Windows.Forms.Padding(3);
             this.battleshipLabel.Name = "battleshipLabel";
             this.battleshipLabel.Size = new System.Drawing.Size(59, 13);
@@ -105,7 +94,6 @@ namespace Logic_games
             this.ClientSize = new System.Drawing.Size(366, 203);
             this.Controls.Add(this.playTimeLabel);
             this.Controls.Add(this.battleshipLabel);
-            this.Controls.Add(this.sudokuLabel);
             this.Controls.Add(this.snakeLabel);
             this.Controls.Add(this.gamesPlayedLabel);
             this.Controls.Add(this.titleLabel);
@@ -123,7 +111,6 @@ namespace Logic_games
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label gamesPlayedLabel;
         private System.Windows.Forms.Label snakeLabel;
-        private System.Windows.Forms.Label sudokuLabel;
         private System.Windows.Forms.Label battleshipLabel;
         private System.Windows.Forms.Label playTimeLabel;
     }

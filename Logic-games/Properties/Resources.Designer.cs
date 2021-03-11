@@ -61,16 +61,6 @@ namespace Logic_games.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] adventure {
-            get {
-                object obj = ResourceManager.GetObject("adventure", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap apple {
@@ -113,46 +103,6 @@ namespace Logic_games.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap battleship1 {
-            get {
-                object obj = ResourceManager.GetObject("battleship1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap battleship2 {
-            get {
-                object obj = ResourceManager.GetObject("battleship2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap battleship3 {
-            get {
-                object obj = ResourceManager.GetObject("battleship3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap battleship4 {
-            get {
-                object obj = ResourceManager.GetObject("battleship4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap body {
             get {
                 object obj = ResourceManager.GetObject("body", resourceCulture);
@@ -173,9 +123,9 @@ namespace Logic_games.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap carrier1 {
+        internal static System.Drawing.Bitmap Dbattleship1 {
             get {
-                object obj = ResourceManager.GetObject("carrier1", resourceCulture);
+                object obj = ResourceManager.GetObject("Dbattleship1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +133,9 @@ namespace Logic_games.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap carrier2 {
+        internal static System.Drawing.Bitmap Dbattleship2 {
             get {
-                object obj = ResourceManager.GetObject("carrier2", resourceCulture);
+                object obj = ResourceManager.GetObject("Dbattleship2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,9 +143,9 @@ namespace Logic_games.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap carrier3 {
+        internal static System.Drawing.Bitmap Dbattleship3 {
             get {
-                object obj = ResourceManager.GetObject("carrier3", resourceCulture);
+                object obj = ResourceManager.GetObject("Dbattleship3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,9 +153,9 @@ namespace Logic_games.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap carrier4 {
+        internal static System.Drawing.Bitmap Dbattleship4 {
             get {
-                object obj = ResourceManager.GetObject("carrier4", resourceCulture);
+                object obj = ResourceManager.GetObject("Dbattleship4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,9 +163,79 @@ namespace Logic_games.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap carrier5 {
+        internal static System.Drawing.Bitmap Dcarrier1 {
             get {
-                object obj = ResourceManager.GetObject("carrier5", resourceCulture);
+                object obj = ResourceManager.GetObject("Dcarrier1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Dcarrier2 {
+            get {
+                object obj = ResourceManager.GetObject("Dcarrier2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Dcarrier3 {
+            get {
+                object obj = ResourceManager.GetObject("Dcarrier3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Dcarrier4 {
+            get {
+                object obj = ResourceManager.GetObject("Dcarrier4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Dcarrier5 {
+            get {
+                object obj = ResourceManager.GetObject("Dcarrier5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ddestroyer1 {
+            get {
+                object obj = ResourceManager.GetObject("Ddestroyer1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ddestroyer2 {
+            get {
+                object obj = ResourceManager.GetObject("Ddestroyer2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ddestroyer3 {
+            get {
+                object obj = ResourceManager.GetObject("Ddestroyer3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,9 +253,9 @@ namespace Logic_games.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap destroyer1 {
+        internal static System.Drawing.Bitmap DpatrolBoat1 {
             get {
-                object obj = ResourceManager.GetObject("destroyer1", resourceCulture);
+                object obj = ResourceManager.GetObject("DpatrolBoat1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,9 +263,9 @@ namespace Logic_games.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap destroyer2 {
+        internal static System.Drawing.Bitmap DpatrolBoat2 {
             get {
-                object obj = ResourceManager.GetObject("destroyer2", resourceCulture);
+                object obj = ResourceManager.GetObject("DpatrolBoat2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,9 +273,29 @@ namespace Logic_games.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap destroyer3 {
+        internal static System.Drawing.Bitmap Dsubmarine1 {
             get {
-                object obj = ResourceManager.GetObject("destroyer3", resourceCulture);
+                object obj = ResourceManager.GetObject("Dsubmarine1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Dsubmarine2 {
+            get {
+                object obj = ResourceManager.GetObject("Dsubmarine2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Dsubmarine3 {
+            get {
+                object obj = ResourceManager.GetObject("Dsubmarine3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -276,6 +316,176 @@ namespace Logic_games.Properties {
         internal static System.Drawing.Bitmap Hit {
             get {
                 object obj = ResourceManager.GetObject("Hit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Lbattleship1 {
+            get {
+                object obj = ResourceManager.GetObject("Lbattleship1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Lbattleship2 {
+            get {
+                object obj = ResourceManager.GetObject("Lbattleship2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Lbattleship3 {
+            get {
+                object obj = ResourceManager.GetObject("Lbattleship3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Lbattleship4 {
+            get {
+                object obj = ResourceManager.GetObject("Lbattleship4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Lcarrier1 {
+            get {
+                object obj = ResourceManager.GetObject("Lcarrier1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Lcarrier2 {
+            get {
+                object obj = ResourceManager.GetObject("Lcarrier2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Lcarrier3 {
+            get {
+                object obj = ResourceManager.GetObject("Lcarrier3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Lcarrier4 {
+            get {
+                object obj = ResourceManager.GetObject("Lcarrier4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Lcarrier5 {
+            get {
+                object obj = ResourceManager.GetObject("Lcarrier5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ldestroyer1 {
+            get {
+                object obj = ResourceManager.GetObject("Ldestroyer1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ldestroyer2 {
+            get {
+                object obj = ResourceManager.GetObject("Ldestroyer2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ldestroyer3 {
+            get {
+                object obj = ResourceManager.GetObject("Ldestroyer3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LpatrolBoat1 {
+            get {
+                object obj = ResourceManager.GetObject("LpatrolBoat1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LpatrolBoat2 {
+            get {
+                object obj = ResourceManager.GetObject("LpatrolBoat2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Lsubmarine1 {
+            get {
+                object obj = ResourceManager.GetObject("Lsubmarine1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Lsubmarine2 {
+            get {
+                object obj = ResourceManager.GetObject("Lsubmarine2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Lsubmarine3 {
+            get {
+                object obj = ResourceManager.GetObject("Lsubmarine3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -364,9 +574,9 @@ namespace Logic_games.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap patrolBoat1 {
+        internal static System.Drawing.Bitmap Rbattleship1 {
             get {
-                object obj = ResourceManager.GetObject("patrolBoat1", resourceCulture);
+                object obj = ResourceManager.GetObject("Rbattleship1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -374,20 +584,110 @@ namespace Logic_games.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap patrolBoat2 {
+        internal static System.Drawing.Bitmap Rbattleship2 {
             get {
-                object obj = ResourceManager.GetObject("patrolBoat2", resourceCulture);
+                object obj = ResourceManager.GetObject("Rbattleship2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] pixelfont {
+        internal static System.Drawing.Bitmap Rbattleship3 {
             get {
-                object obj = ResourceManager.GetObject("pixelfont", resourceCulture);
-                return ((byte[])(obj));
+                object obj = ResourceManager.GetObject("Rbattleship3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rbattleship4 {
+            get {
+                object obj = ResourceManager.GetObject("Rbattleship4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rcarrier1 {
+            get {
+                object obj = ResourceManager.GetObject("Rcarrier1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rcarrier2 {
+            get {
+                object obj = ResourceManager.GetObject("Rcarrier2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rcarrier3 {
+            get {
+                object obj = ResourceManager.GetObject("Rcarrier3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rcarrier4 {
+            get {
+                object obj = ResourceManager.GetObject("Rcarrier4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rcarrier5 {
+            get {
+                object obj = ResourceManager.GetObject("Rcarrier5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rdestroyer1 {
+            get {
+                object obj = ResourceManager.GetObject("Rdestroyer1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rdestroyer2 {
+            get {
+                object obj = ResourceManager.GetObject("Rdestroyer2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rdestroyer3 {
+            get {
+                object obj = ResourceManager.GetObject("Rdestroyer3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -404,39 +704,59 @@ namespace Logic_games.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap RpatrolBoat1 {
+            get {
+                object obj = ResourceManager.GetObject("RpatrolBoat1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RpatrolBoat2 {
+            get {
+                object obj = ResourceManager.GetObject("RpatrolBoat2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rsubmarine1 {
+            get {
+                object obj = ResourceManager.GetObject("Rsubmarine1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rsubmarine2 {
+            get {
+                object obj = ResourceManager.GetObject("Rsubmarine2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rsubmarine3 {
+            get {
+                object obj = ResourceManager.GetObject("Rsubmarine3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Submarine {
             get {
                 object obj = ResourceManager.GetObject("Submarine", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap submarine1 {
-            get {
-                object obj = ResourceManager.GetObject("submarine1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap submarine2 {
-            get {
-                object obj = ResourceManager.GetObject("submarine2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap submarine3 {
-            get {
-                object obj = ResourceManager.GetObject("submarine3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -477,6 +797,176 @@ namespace Logic_games.Properties {
         internal static System.Drawing.Bitmap turn2 {
             get {
                 object obj = ResourceManager.GetObject("turn2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ubattleship1 {
+            get {
+                object obj = ResourceManager.GetObject("Ubattleship1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ubattleship2 {
+            get {
+                object obj = ResourceManager.GetObject("Ubattleship2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ubattleship3 {
+            get {
+                object obj = ResourceManager.GetObject("Ubattleship3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ubattleship4 {
+            get {
+                object obj = ResourceManager.GetObject("Ubattleship4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ucarrier1 {
+            get {
+                object obj = ResourceManager.GetObject("Ucarrier1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ucarrier2 {
+            get {
+                object obj = ResourceManager.GetObject("Ucarrier2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ucarrier3 {
+            get {
+                object obj = ResourceManager.GetObject("Ucarrier3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ucarrier4 {
+            get {
+                object obj = ResourceManager.GetObject("Ucarrier4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ucarrier5 {
+            get {
+                object obj = ResourceManager.GetObject("Ucarrier5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Udestroyer1 {
+            get {
+                object obj = ResourceManager.GetObject("Udestroyer1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Udestroyer2 {
+            get {
+                object obj = ResourceManager.GetObject("Udestroyer2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Udestroyer3 {
+            get {
+                object obj = ResourceManager.GetObject("Udestroyer3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UpatrolBoat1 {
+            get {
+                object obj = ResourceManager.GetObject("UpatrolBoat1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UpatrolBoat2 {
+            get {
+                object obj = ResourceManager.GetObject("UpatrolBoat2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Usubmarine1 {
+            get {
+                object obj = ResourceManager.GetObject("Usubmarine1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Usubmarine2 {
+            get {
+                object obj = ResourceManager.GetObject("Usubmarine2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Usubmarine3 {
+            get {
+                object obj = ResourceManager.GetObject("Usubmarine3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

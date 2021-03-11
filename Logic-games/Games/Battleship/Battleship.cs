@@ -10,267 +10,148 @@ namespace Logic_games
 {
     public partial class Battleship : Form
     {
-        public static System.Drawing.Text.PrivateFontCollection pfc = new System.Drawing.Text.PrivateFontCollection();
-        public static Font pixel;
+        //VARIABLES
+        //private int[] shipNumber = new int[] {0,0,0,1,0}; //TEST CASE WITH 1 SHIP
+        private int[] shipNumber = new int[] {1,2,3,4,5}; //CARRIER, BATTLESHIP, DESTROYER, SUBMARINE, PATROLBOAT
+        public bool multiplayer = false;
+        private List<Control> menu;
+        private List<Control> win;
 
-        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
-            IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
-
-        private void addPixel()
-        {
-            byte[] fontData = Properties.Resources.pixelfont;
-            IntPtr fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
-            System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
-            uint dummy = 0;
-            pfc.AddMemoryFont(fontPtr, Properties.Resources.pixelfont.Length);
-            AddFontMemResourceEx(fontPtr, (uint)Properties.Resources.pixelfont.Length, IntPtr.Zero, ref dummy);
-            System.Runtime.InteropServices.Marshal.FreeCoTaskMem(fontPtr);
-
-            pixel = new Font(pfc.Families[0], 9.0F);
-
-            fontData = Properties.Resources.adventure;
-            fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
-            System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
-            dummy = 0;
-            pfc.AddMemoryFont(fontPtr, Properties.Resources.adventure.Length);
-            AddFontMemResourceEx(fontPtr, (uint)Properties.Resources.adventure.Length, IntPtr.Zero, ref dummy);
-            System.Runtime.InteropServices.Marshal.FreeCoTaskMem(fontPtr);
-
-            pixel = new Font(pfc.Families[0], 9.0F);
-            menuPanel.Font = pixel;
-            gameLP1.Font = pixel;
-            gameLP2.Font = pixel;
-            waitPanel.Font = new System.Drawing.Font(pfc.Families[1], 14F, System.Drawing.FontStyle.Regular);
-            winnerLb.Font = new System.Drawing.Font(pfc.Families[0], 18F, System.Drawing.FontStyle.Regular);
-            winPanel.Font = pixel;
-            statLb.Font = pixel;
-            waitLB.Font = new System.Drawing.Font(pfc.Families[1], 30F, System.Drawing.FontStyle.Regular);
-        }
+        //PREAPARATION
         public Battleship()
         {
             InitializeComponent();
-            addPixel();
-            gameLP1.Visible = false;
-        }
-        bool started1 = false, started2= false, started3 = false;
-        public void SetupGame(int p)
-        {
-            winPanel.Hide();
-            if (p == 0)
-            {
-                Bot bot = new Bot();
-                Player p1 = new Player();
-                MakeBoard(p1, bot);   
-            }
-            else
-            {
-                string name="";
-                if (nameTB1.Text.Length == 0) { name = "Player 1"; }
-                else { name = nameTB1.Text; }
-                Player p1 = new Player(name);
-                if (nameTB2.Text.Length == 0) { name = "Player 2"; }
-                else { name = nameTB2.Text; }
-                Player p2 = new Player(name);
-                MakeBoard(p1, p2, 1);
-            }
+            DoubleBuffered = true;
+            menu = new List<Control>() { menuBackButton, menuErrorLabel, menuStartButton };
+            win = new List<Control>() { winContiniueButton, winCupPicturebox, winnerLb, winStatisticsLabel };
+            ChangeView(win, menu);
         }
 
-        private void MakeBoard(Player Player1, Player Player2, int p)
+    //CUSTOM FUNCTIONS
+
+        //SINGLEPLAYER MODE
+        private void SinglePlayer()
         {
-            phase1 Pl = new phase1(gamePanel, gameLP1, rightMenuPanel, Player1);
-            Pl.SetupGame();
-            int g = Pl.goal;
-            Pl.Finished += WaitingForPlayer;
+            BattleshipPlayer player1 = new BattleshipPlayer("YOU", shipNumber);
+            PlacementWindowOpen(player1);
 
-            void WaitingForPlayer(object sender, EventArgs e)
+            void PlacementWindowOpen(BattleshipPlayer player)
             {
-                gameLP1.Hide();
-                Pl.DeleteItems();
+                bool saved = false;
+                Visible = false; // hiding this window
+                BattleshipPlacement battleshipWindow1 = new BattleshipPlacement(shipNumber);
+                //Event handling
+                battleshipWindow1.OnPlacedAllShips += SaveInventory;
+                battleshipWindow1.Show();
+                battleshipWindow1.FormClosed += new FormClosedEventHandler(GuessWindowOpen);
 
-                if (p != 2)
+                void SaveInventory(object creator, BattleshipPlacement.PlacedAllShips f)
                 {
-                    Change(Player2.name);
-                    MakeBoard(Player2, Player1, 2);
+                    //SAVING INVENTORY
+                    player.myShips = new List<BattleshipShip>(f.inventory);
+                    player.myBoard = f.myBoard;
+                    saved = true;
+                    battleshipWindow1.OnPlacedAllShips -= SaveInventory;
                 }
-                else
-                {
-                    gameLP1.Hide();
-                    started1 = false;
-                    started2 = true;
-                    phase2 Ps = new phase2(gameLP2, waitPanel, Player2, Player1, g);
-                    Ps.Won +=GameEnd;
 
-                    void GameEnd(object o, phase2.OnWin data)
+                void GuessWindowOpen(object s, EventArgs g) //OPENING THE SECOND PHASE
+                {
+                    battleshipWindow1.FormClosed -= new FormClosedEventHandler(GuessWindowOpen);
+                    if (saved)
                     {
-                        Reset(data.player, data.i);
+                        BattleshipGuessForm guessWndow = new BattleshipGuessForm(player);
+                        guessWndow.FormClosed += ShowThisWindow;
+                        guessWndow.Show();
+                        guessWndow.Won += Won;
+
+                        void Won(object sender, BattleshipGuessForm.OnWin d)
+                        {
+                            guessWndow.Won -= Won;
+                            guessWndow.Close();
+                            Visible = true;
+                            OnWinSingle(d.player);
+                        }
+                        void ShowThisWindow(object se, EventArgs e) 
+                        {
+                            guessWndow.Won -= Won;
+                            guessWndow.FormClosed -= ShowThisWindow;
+                            Show();
+                        }
+                    }
+                    else 
+                    {
+                        Show();
                     }
                 }
             }
         }
-
-        private void MakeBoard(Player Player1, Bot bot)
+        //DISPLAY WIN
+        private void OnWinSingle(BattleshipPlayer winner)
         {
-            phase1 Pl = new phase1(gamePanel, gameLP1, rightMenuPanel, Player1);
-            Pl.SetupGame();
-            int g = Pl.goal;
-            Pl.Finished += WaitingForPlayer;
-
-            void WaitingForPlayer(object sender, EventArgs e)
+            ChangeView(menu, win);
+            winnerLb.Text = winner.name + " WON!";
+            List<List<string>> sum = new List<List<string>>();
+            //INSERTING DATA TO THE TABLE
+            try
             {
-                gameLP1.Hide();
-                started1 = false;
-                started2 = true;
-                Pl.DeleteItems();
-                phase2 Ps = new phase2(gameLP2, waitPanel, Player1, bot, g);
-                Ps.Won += GameEnd;
-
-                void GameEnd(object o, phase2.OnWin data)
-                {
-                    Reset(data.player, data.i);
-                }
-            }
-        }
-
-        private void Change(string player) 
-        {
-            Visible = false;
-            DialogResult res = MessageBox.Show(player+"'s turn", "GAME", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            if (res == DialogResult.OK || res == DialogResult.None)
-            {
-                Visible = true;
-            }
-        }
-
-        private void startBtn_Click(object sender, EventArgs e)
-        {
-            errorLb.Text = "";
-            started1 = true;
-            switch (gameModeCB.SelectedIndex)
-            {
-                case 0:
-                    SetupGame(0);
-                    break;
-                case 1:
-                    SetupGame(1);
-                    break;
-                default:
-                    errorLb.Text = "No game mode selected";
-                    break;
-            }
-        }
-
-        private void Battleship_ResizeBegin(object sender, EventArgs e)
-        {
-            if (started1)
-            {
-                gameLP1.Hide();
-            }
-
-            if (!gameLP2.Visible && started2==true)
-            {
-                started3 = true;
-                waitPanel.Hide();
-            }
-            else 
-            {
-                started3 = false;
-            }
-            
-            if (started2 && !started3)
-            {
-                gameLP2.Hide();
-            }
-        }
-        private void Battleship_ResizeEnd(object sender, EventArgs e)
-        {
-            waitPanel.Size = Size;
-            waitLB.Width = waitPanel.Width;
-            waitBTN.Width = waitPanel.Width;
-            waitBTN.Location = new Point(0, waitPanel.Height - waitBTN.Height-20);
-            if (started1)
-            {
-                gameLP1.Show();
-            }
-            else if (started2 && !started3)
-            {
-                gameLP2.Show();
-            }
-            else if(started3)
-            {
-                waitPanel.Show();
-            }
-        }
-        private void backBtn_Click(object sender, EventArgs e)
-        {
-            Close(); //BACK TO MAIN MENU
-        }
-
-        private void ContiniueBTN_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void gameModeCB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (gameModeCB.SelectedIndex==0) 
-            {
-                nameTB1.Visible = false; 
-                nameTB2.Visible = false; 
-            }
-            else 
-            {
-                nameTB1.Visible = true;
-                nameTB2.Visible = true;
-            }
-        }
-
-        private void Reset(Player winner, int mode) 
-        {
-            gameModeCB.SelectedIndex = 0;
-            nameTB1.Visible = false;
-            nameTB2.Visible = false;
-            gameLP2.Controls.Clear();
-            winPanel.Show();
-            menuPanel.Show();
-            gameLP1.Hide();
-            gameLP2.Hide();
-            waitPanel.Hide();
-            started1 = false;
-            started2 = false;
-            started3 = false;
-            if (mode == 2)
-            {
-                cupPB.Visible = false;
-                statLb.Visible = false;
-                winnerLb.Text = winner.name + " won!";
-            }
-            else 
-            {
-                
-                cupPB.Visible = true;
-                statLb.Visible = true;
-                
-                winnerLb.Text = winner.name + " won!";
-                if (winner.name != "BOT")
-                {
-                    SqlConnectionHandler.RunNonQuery($"INSERT INTO battleship(score) VALUES(1)");
-                }
-                else 
-                {
-                    SqlConnectionHandler.RunNonQuery($"INSERT INTO battleship(score) VALUES(-1)");
-                }
-                List<List<string>> sum = SqlConnectionHandler.Query($"SELECT sum(score) FROM battleship WHERE score = 1");
+                if (SqlConnectionHandler.InitialSetup() == 0)
+                    if (winner.name != "BOT")
+                    {
+                        SqlConnectionHandler.RunNonQuery($"INSERT INTO battleship(score) VALUES(1)");
+                    }
+                    else
+                    {
+                        SqlConnectionHandler.RunNonQuery($"INSERT INTO battleship(score) VALUES(-1)");
+                    }
+                //GETTING STATS
+                sum = SqlConnectionHandler.Query($"SELECT sum(score) FROM battleship WHERE score = 1");
                 if (sum.Count > 0)
                 {
-                    statLb.Text = Convert.ToString("Wins against bot: " + sum[0][0]);
+                    string ammount = Convert.ToString(sum[0][0]);
+                    winStatisticsLabel.Text= "Wins against bot: "+ammount ;
                 }
                 else
                 {
-                    statLb.Hide();
+                    winStatisticsLabel.Hide();
                 }
             }
-            
+            catch
+            {
+                winStatisticsLabel.Hide();
+            }
+        }
+
+        //HIDE AND SHOW - SWITCHING MENU VIEWS
+        private void ChangeView(List<Control> hidden, List<Control> shown)
+        {
+            foreach (Control item in hidden)
+            {
+                item.Hide();
+            }
+            foreach (Control item in shown)
+            {
+                item.Show();
+            }
+        }
+
+    //CONTROLS
+
+        //START GAME
+        private void menuStartButton_Click(object sender, EventArgs e)
+        {
+            SinglePlayer();
+        }
+        //CREATE ANOTHER GAME
+        private void winContiniueButton_Click(object sender, EventArgs e)
+        {
+            multiplayer = false;
+            ChangeView(win, menu);
+        }
+        
+        //BACK TO MAIN MENU
+        private void menuBackButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

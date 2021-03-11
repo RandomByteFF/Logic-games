@@ -53,7 +53,7 @@ namespace Logic_games
         private int BattleshipWins() 
         {
             List<List<string>> sum = SqlConnectionHandler.Query($"SELECT sum(score) FROM battleship WHERE score = 1");
-            if (sum.Count > 0)
+            if (sum[0][0]!="")
             {
                 return int.Parse(sum[0][0]);
             }

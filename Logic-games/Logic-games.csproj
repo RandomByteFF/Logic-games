@@ -242,24 +242,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Games\Battleship\Battleship.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Games\Battleship\Battleship.Designer.cs">
-      <DependentUpon>Battleship.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Games\Battleship\Bot.cs" />
-    <Compile Include="Games\Battleship\phase1.cs" />
-    <Compile Include="Games\Battleship\phase2.cs" />
-    <Compile Include="Games\Battleship\Player.cs" />
-    <Compile Include="Games\Battleship\playerBoard.cs" />
-    <Compile Include="Games\Battleship\ship.cs" />
+    <Compile Include="Games\Battleship\Battleship.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Games\Battleship\Battleship.designer.cs">
+      <DependentUpon>Battleship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Games\Battleship\BattleshipBoard.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Games\Battleship\BattleshipBot.cs" />
+    <Compile Include="Games\Battleship\BattleshipGuessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Games\Battleship\BattleshipGuessForm.Designer.cs">
+      <DependentUpon>BattleshipGuessForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Games\Battleship\BattleshipPlacement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Games\Battleship\BattleshipPlacement.designer.cs">
+      <DependentUpon>BattleshipPlacement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Games\Battleship\BattleshipPlayer.cs" />
+    <Compile Include="Games\Battleship\BattleshipShip.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Games\Snake\Snake.cs">
@@ -287,6 +299,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Games\Battleship\Battleship.resx">
       <DependentUpon>Battleship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Games\Battleship\BattleshipGuessForm.resx">
+      <DependentUpon>BattleshipGuessForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Games\Battleship\BattleshipPlacement.resx">
+      <DependentUpon>BattleshipPlacement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Games\Sudoku\Sudoku.resx">
       <DependentUpon>Sudoku.cs</DependentUpon>
@@ -365,6 +383,74 @@
     <EmbeddedResource Include="Resources\megoldas1.txt" />
     <EmbeddedResource Include="Resources\megoldas2.txt" />
     <EmbeddedResource Include="Resources\megoldas3.txt" />
+    <None Include="Resources\Battleship\Components\Dbattleship1.png" />
+    <None Include="Resources\Battleship\Components\Dbattleship2.png" />
+    <None Include="Resources\Battleship\Components\Dbattleship3.png" />
+    <None Include="Resources\Battleship\Components\Dbattleship4.png" />
+    <None Include="Resources\Battleship\Components\Dcarrier1.png" />
+    <None Include="Resources\Battleship\Components\Dcarrier2.png" />
+    <None Include="Resources\Battleship\Components\Dcarrier3.png" />
+    <None Include="Resources\Battleship\Components\Dcarrier4.png" />
+    <None Include="Resources\Battleship\Components\Dcarrier5.png" />
+    <None Include="Resources\Battleship\Components\Ddestroyer1.png" />
+    <None Include="Resources\Battleship\Components\Ddestroyer2.png" />
+    <None Include="Resources\Battleship\Components\Ddestroyer3.png" />
+    <None Include="Resources\Battleship\Components\DpatrolBoat1.png" />
+    <None Include="Resources\Battleship\Components\DpatrolBoat2.png" />
+    <None Include="Resources\Battleship\Components\Dsubmarine1.png" />
+    <None Include="Resources\Battleship\Components\Dsubmarine2.png" />
+    <None Include="Resources\Battleship\Components\Dsubmarine3.png" />
+    <None Include="Resources\Battleship\Components\Lbattleship1.png" />
+    <None Include="Resources\Battleship\Components\Lbattleship2.png" />
+    <None Include="Resources\Battleship\Components\Lbattleship3.png" />
+    <None Include="Resources\Battleship\Components\Lbattleship4.png" />
+    <None Include="Resources\Battleship\Components\Lcarrier1.png" />
+    <None Include="Resources\Battleship\Components\Lcarrier2.png" />
+    <None Include="Resources\Battleship\Components\Lcarrier3.png" />
+    <None Include="Resources\Battleship\Components\Lcarrier4.png" />
+    <None Include="Resources\Battleship\Components\Lcarrier5.png" />
+    <None Include="Resources\Battleship\Components\Ldestroyer1.png" />
+    <None Include="Resources\Battleship\Components\Ldestroyer2.png" />
+    <None Include="Resources\Battleship\Components\Ldestroyer3.png" />
+    <None Include="Resources\Battleship\Components\LpatrolBoat1.png" />
+    <None Include="Resources\Battleship\Components\LpatrolBoat2.png" />
+    <None Include="Resources\Battleship\Components\Lsubmarine1.png" />
+    <None Include="Resources\Battleship\Components\Lsubmarine2.png" />
+    <None Include="Resources\Battleship\Components\Lsubmarine3.png" />
+    <None Include="Resources\Battleship\Components\Rbattleship1.png" />
+    <None Include="Resources\Battleship\Components\Rbattleship2.png" />
+    <None Include="Resources\Battleship\Components\Rbattleship3.png" />
+    <None Include="Resources\Battleship\Components\Rbattleship4.png" />
+    <None Include="Resources\Battleship\Components\Rcarrier1.png" />
+    <None Include="Resources\Battleship\Components\Rcarrier2.png" />
+    <None Include="Resources\Battleship\Components\Rcarrier3.png" />
+    <None Include="Resources\Battleship\Components\Rcarrier4.png" />
+    <None Include="Resources\Battleship\Components\Rcarrier5.png" />
+    <None Include="Resources\Battleship\Components\Rdestroyer1.png" />
+    <None Include="Resources\Battleship\Components\Rdestroyer2.png" />
+    <None Include="Resources\Battleship\Components\Rdestroyer3.png" />
+    <None Include="Resources\Battleship\Components\RpatrolBoat1.png" />
+    <None Include="Resources\Battleship\Components\RpatrolBoat2.png" />
+    <None Include="Resources\Battleship\Components\Rsubmarine1.png" />
+    <None Include="Resources\Battleship\Components\Rsubmarine2.png" />
+    <None Include="Resources\Battleship\Components\Rsubmarine3.png" />
+    <None Include="Resources\Battleship\Components\Ubattleship1.png" />
+    <None Include="Resources\Battleship\Components\Ubattleship2.png" />
+    <None Include="Resources\Battleship\Components\Ubattleship3.png" />
+    <None Include="Resources\Battleship\Components\Ubattleship4.png" />
+    <None Include="Resources\Battleship\Components\Ucarrier1.png" />
+    <None Include="Resources\Battleship\Components\Ucarrier2.png" />
+    <None Include="Resources\Battleship\Components\Ucarrier3.png" />
+    <None Include="Resources\Battleship\Components\Ucarrier4.png" />
+    <None Include="Resources\Battleship\Components\Ucarrier5.png" />
+    <None Include="Resources\Battleship\Components\Udestroyer1.png" />
+    <None Include="Resources\Battleship\Components\Udestroyer2.png" />
+    <None Include="Resources\Battleship\Components\Udestroyer3.png" />
+    <None Include="Resources\Battleship\Components\UpatrolBoat1.png" />
+    <None Include="Resources\Battleship\Components\UpatrolBoat2.png" />
+    <None Include="Resources\Battleship\Components\Usubmarine1.png" />
+    <None Include="Resources\Battleship\Components\Usubmarine2.png" />
+    <None Include="Resources\Battleship\Components\Usubmarine3.png" />
     <Content Include="Resources\water24.png" />
   </ItemGroup>
   <ItemGroup>
