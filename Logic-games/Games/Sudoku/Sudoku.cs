@@ -16,6 +16,7 @@ namespace Logic_games
 {
     public partial class Sudoku : Form
     {
+        static bool kapcs = true;
         static int mt = 0;
         static int red = 0;
         static int[,] meg = new int[9, 9];
@@ -24,58 +25,65 @@ namespace Logic_games
             InitializeComponent();
             dataGridView1.Visible = false;
             button2.Visible = false;
+            button3.Visible = false;
+            button4.Visible = false;
             label1.Visible = false;
             label2.Visible = false;
+            label3.Visible = false;
+            label4.Visible = false;
+            label5.Visible = false;
+            label6.Visible = false;
+            richTextBox1.Visible = false;
         }
 
 
         static int[,] Fel()
         {
-            /*string con = "server=localhost;user=root;database=logicgames;password=''";
+            int[,] meg = new int[9, 9];
+            string pille = "megoldas";
+            Random val = new Random();
+            pille += Convert.ToString(val.Next(1, 4));
+            try
+            {
+                 string con = "server=localhost;user=root;database=logicgames;password=''";
             MySqlConnection filo = new MySqlConnection(con);
             filo.Open();
-            string pille = "megoldas";
-            
-            //
-            pille += Convert.ToString(1);
             string ms = "SELECT * FROM " + pille + ";";
             MySqlCommand mc = new MySqlCommand(ms, filo);
             MySqlDataReader rdr = mc.ExecuteReader();
             int i = 0;
             while (rdr.Read())
             {
-                for(int j = 0; j < 9; j++)
-                 {
-                     meg[i, j] = Convert.ToInt32(rdr[j]);
-                 }
-                i++;
-            }
-            filo.Close();*/
-            int[,] meg = new int[9, 9];
-            string pille = "";
-            Random val = new Random();
-            pille += Convert.ToString(val.Next(1, 4));
-
-            var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = $"Logic_games.Resources.megoldas{pille}.txt";
-            List<string> m = new List<string>();
-
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                while (!reader.EndOfStream)
-                {
-                    m.Add(reader.ReadLine());
-                }
-            }
-
-            //string[] m = File.ReadAllLines();
-            for (int i = 0; i < m.Count; i++)
-            {
-                string[] line = m[i].Split(' ');
                 for (int j = 0; j < 9; j++)
                 {
-                    meg[i, j] = Convert.ToInt32(line[j]);
+                    meg[i, j] = Convert.ToInt32(rdr[j]);
+                }
+                i++;
+            }
+            filo.Close();
+            }
+            catch (Exception ex)
+            {
+                kapcs = false;
+                var assembly = Assembly.GetExecutingAssembly();
+                var resourceName = $"Logic_games.Resources.megoldas{pille}.txt";
+                List<string> m = new List<string>();
+
+                using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        m.Add(reader.ReadLine());
+                    }
+                }
+                for (int i = 0; i < m.Count; i++)
+                {
+                    string[] line = m[i].Split(' ');
+                    for (int j = 0; j < 9; j++)
+                    {
+                        meg[i, j] = Convert.ToInt32(line[j]);
+                    }
                 }
             }
             return meg;
@@ -129,50 +137,36 @@ namespace Logic_games
                 {
                     if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor == Color.Red) red--;
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = Color.DarkBlue;
+                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.Font = new Font("Times New Roman", 14F, FontStyle.Bold);
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ReadOnly = true;
                     mt--;
                 }
                 else
                 {
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = Color.Red;
+                    label4.Text = Convert.ToString(Convert.ToInt32(label4.Text) + 1);
                     red++;
                 }
                 if (mt == 0 && red == 0)
                 {
                     MessageBox.Show("Gratulálok nyertél!");
+                    dataGridView1.Visible = false;
+                    button2.Visible = false;
+                    button3.Visible = true;
+                    label1.Visible = false;
+                    label2.Visible = false;
+                    label3.Visible = false;
+                    label4.Visible = false;
                 }
             }
         }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (mt != 0 && label2.Text != "0")
-            {
-                Random v = new Random();
-                int x = v.Next(0, 9);
-                int y = v.Next(0, 9);
-                while (dataGridView1.Rows[x].Cells[y].Value != null)
-                {
-                    x = v.Next(0, 9);
-                    y = v.Next(0, 9);
-                }
-                dataGridView1.Rows[x].Cells[y].Value = meg[x, y];
-                dataGridView1.Rows[x].Cells[y].Style.Font = new Font("Times New Roman", 14F, FontStyle.Bold);
-                dataGridView1.Rows[x].Cells[y].ReadOnly = true;
-                label2.Text = Convert.ToString(Convert.ToInt32(label2.Text) - 1);
-                mt--;
-                if (mt == 0 && red == 0)
-                {
-                    MessageBox.Show("Gratulálok nyertél!");
-                }
-            }
-            else if (mt != 0)
-            {
-                MessageBox.Show("Sajnos elfogyott a segítség kéréseidnek a száma!");
-            }
-        }
-
+       
         private void button1_Click(object sender, EventArgs e)
         {
+            label5.Visible = true;
+            richTextBox1.Visible = true;
+            button4.Visible = true;
+            button1.Visible = false;
             meg = Fel();
             int[,] val = new int[9, 9];
             dataGridView1.DefaultCellStyle.SelectionBackColor = dataGridView1.DefaultCellStyle.BackColor;
@@ -226,6 +220,13 @@ namespace Logic_games
                     }
                 }
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            label5.Visible = false;
+            richTextBox1.Visible = false;
+            button4.Visible = false;
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
@@ -239,6 +240,87 @@ namespace Logic_games
             label1.Visible = true;
             label2.Text = (mt / 2).ToString();
             label2.Visible = true;
+            label3.Visible = true;
+            label4.Visible = true;
+            label4.Text = "0";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (mt != 0 && label2.Text != "0")
+            {
+                Random v = new Random();
+                int x = v.Next(0, 9);
+                int y = v.Next(0, 9);
+                while (dataGridView1.Rows[x].Cells[y].Value != null)
+                {
+                    x = v.Next(0, 9);
+                    y = v.Next(0, 9);
+                }
+                dataGridView1.Rows[x].Cells[y].Value = meg[x, y];
+                dataGridView1.Rows[x].Cells[y].Style.Font = new Font("Times New Roman", 14F, FontStyle.Bold);
+                dataGridView1.Rows[x].Cells[y].ReadOnly = true;
+                label2.Text = Convert.ToString(Convert.ToInt32(label2.Text) - 1);
+                mt--;
+                if (mt == 0 && red == 0)
+                {
+                    MessageBox.Show("Gratulálok nyertél!");
+                    dataGridView1.Visible = false;
+                    button2.Visible = false;
+                    button3.Visible = true;
+                    label1.Visible = false;
+                    label2.Visible = false;
+                    label3.Visible = false;
+                    label4.Visible = false;
+                }
+            }
+            else if (mt != 0)
+            {
+                MessageBox.Show("Sajnos elfogyott a segítség kéréseidnek a száma!");
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            label6.Visible = true;
+            label6.Text = "";
+            button4.Visible = false;
+            int sc = Convert.ToInt32(label2.Text) * 100 - Convert.ToInt32(label4.Text) * 10;
+            if (kapcs)
+            {
+                string con = "server=localhost;user=root;database=logicgames;password=''";
+                MySqlConnection filo = new MySqlConnection(con);
+                string cm = "INSERT INTO sudoku VALUES(" + richTextBox1.Text + ", " + sc + ")";
+                List<string> rang = Illango(filo, cm);
+                for(int i = 0; i < 3&& i < rang.Count; i++)
+                {
+                    label6.Text += (i+1) + ". helyezett: " + rang[i] + "\n";
+                }
+            }
+            else
+            {
+                MessageBox.Show("Couldn't connect to server");
+                label6.Text = "Játékos: " + richTextBox1.Text + "\nelértpontszáma: " + sc;
+            }
+        }
+
+        static List<string> Illango(MySqlConnection filo, string cm)
+        {
+            List<string> val = new List<string>();
+            filo.Open();
+            string cmd = "SELECT * FROM sudoku ORDER BY 2 DESC;";
+            MySqlCommand v = new MySqlCommand(cm, filo);
+            MySqlDataReader f = v.ExecuteReader();
+            f.Close();
+            MySqlCommand k = new MySqlCommand(cmd, filo);
+            MySqlDataReader n = k.ExecuteReader();
+            while (n.Read())
+            {
+                val.Add(n[0] + " pontszáma: " + n[1]);
+            }
+            n.Close();
+            filo.Close();
+            return val;
         }
     }
 }
